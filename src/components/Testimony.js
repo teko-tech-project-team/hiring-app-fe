@@ -88,8 +88,7 @@ return (
                                     <p className='text-slate-400'>{item.skill}</p>
                                     <p>{item.description}</p>
                                 </div>
-                            </div>
-                            
+                            </div>                           
                 </SwiperSlide>
                 ))}
             </Swiper>

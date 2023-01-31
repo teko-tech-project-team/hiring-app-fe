@@ -13,7 +13,15 @@ module.exports = {
         '2xl': '6rem',
       },
     },
+    colors: {
+      'purple': '#5E50A1',
+      'grey': '#E5E5E5',
+      'white': '#ffffff'
+    },
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    require('@tailwindcss/forms') 
+  ],
 }
