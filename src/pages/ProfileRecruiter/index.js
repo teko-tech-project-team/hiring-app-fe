@@ -14,7 +14,7 @@ const ProfileRecruiter = () => {
     <>
 
        <div className='w-full bg-grey pt-[10vh] pb-[10vh]'>      
-            <div className='bg-purple mx-auto w-[80vw] h-[20vh]'>
+            <div className='bg-primary mx-auto w-[80vw] h-[20vh]'>
                 {/* Container Card */}
                 <div className="card w-[50vw] h-[110vh] mx-auto">
                             <figure className="px-10 pt-10">

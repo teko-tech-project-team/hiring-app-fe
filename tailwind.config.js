@@ -19,23 +19,13 @@ module.exports = {
       colors: {
         primary: "#5E50A1",
         secondary: "#FBB017",
+        grey: "E5E5E5",
+        white: '#ffffff'
       },
     },
-<<<<<<< HEAD
-    colors: {
-      'purple': '#5E50A1',
-      'grey': '#E5E5E5',
-      'white': '#ffffff'
-    },
-    extend: {},
   },
   plugins: [
     require("daisyui"),
     require('@tailwindcss/forms') 
   ],
 }
-=======
-  },
-  plugins: [require("daisyui")],
-};
->>>>>>> afb8365df70613858cab469e5ef8c7fc4183a989
