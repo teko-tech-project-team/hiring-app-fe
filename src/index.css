@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply px-5 py-3 text-white bg-primary rounded-lg hover:bg-[#8c81c0];
+  }
+  .btn-outline-primary {
+    @apply px-5 py-3 text-primary bg-[#fff] border border-primary rounded-lg hover:bg-primary hover:text-white;
+  }
+}
