@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import HeroBanner1 from "../../components/HeroBanner1";
 import NavigationBar from "../../components/NavigationBar";
 import { NavigationBarAuthLanding } from "../../components/NavigationBarAuth";
 import Testimony from "../../components/Testimony";
@@ -25,6 +26,7 @@ const LandingPage = () => {
   return (
     <>
       {checkAuth()}
+      <HeroBanner1 />
       <Testimony />
     </>
   );
