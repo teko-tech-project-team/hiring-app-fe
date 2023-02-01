@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 const EditProfileRecruiter = () => {
   return (
     <>
-    <div className='bg-primary w-full h-[40vh] relative'>
+    <div className='bg-purple w-full h-[40vh] relative'>
         {/* Container */}
         <div className='flex justify-evenly absolute top-[15vh] gap-10'>
                 {/* Profile Company */}
@@ -30,11 +30,11 @@ const EditProfileRecruiter = () => {
                 </div> 
                 {/* button save */}
                 <div>
-                    <button className='bg-primary text-white text-xl font-bold w-[30vw] ml-[8vw] h-[10vh] mt-3 rounded-lg'>Simpan</button>                                                 
+                    <button className='bg-purple text-white text-xl font-bold w-[30vw] ml-[8vw] h-[10vh] mt-3 rounded-lg'>Simpan</button>                                                 
                 </div>
                 
                 {/* button back */}               
-                <Link to='/profile-recruiter'><button className='border-2 border-primary text-primary text-xl font-bold w-[30vw] ml-[8vw] h-[10vh] mt-3 rounded-lg'>Kembali</button></Link>    
+                <Link to='/profile-recruiter'><button className='border-2 border-purple text-purple text-xl font-bold w-[30vw] ml-[8vw] h-[10vh] mt-3 rounded-lg'>Kembali</button></Link>    
             </div>   
                 {/* Form */}
             <div className="card w-[50vw] bg-base-100 shadow-xl mx-auto">

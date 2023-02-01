@@ -5,7 +5,10 @@ import propic_chat_default from '../../assets/images/propic-chat-default.jpg'
 
 const Chat = () => {
 
-return (
+   
+
+
+  return (
         <>
 
         {/* Chat belum ada */}
@@ -56,7 +59,7 @@ return (
                     <hr/>  
             </div>            
         </div>
-           
+
         </>
   )
 }
