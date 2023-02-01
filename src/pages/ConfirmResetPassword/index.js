@@ -1,4 +1,4 @@
-const ResetPassword = () => {
+const ConfirmResetPassword = () => {
   return (
     <>
       <div className='flex flex-row'>
@@ -9,7 +9,7 @@ const ResetPassword = () => {
             alt='img'
           />
         </div>
-        <div className='w-1/2 bg-white m-4 mt-[200px]'>
+        <div className='w-1/2 bg-white m-4'>
           <div class='flex flex-col'>
             <label className='label'>
               <span className='label-text text-4xl font-bold'>
@@ -18,22 +18,29 @@ const ResetPassword = () => {
             </label>
             <label className='label'>
               <span className='label-text text-2xl'>
-                Enter your user account's verified email address and we will
-                send you a password reset link.
+                You need to change your password to activate your account
               </span>
             </label>
+
             <label className='label'>
-              <span className='label-text'>Email</span>
+              <span className='label-text'>Kata sandi</span>
             </label>
             <input
               type='text'
-              placeholder='Masukan alamat email'
+              placeholder='Masukan kata sandi'
               className='input input-bordered w-50'
             />
-
+            <label className='label'>
+              <span className='label-text'>Confirm new password</span>
+            </label>
+            <input
+              type='text'
+              placeholder='Masukan konfirmasi kata sandi'
+              className='input input-bordered w-50'
+            />
             <label className='label mt-4'></label>
-            <button className='bg-secondary text-white text-xl font-bold w-[48vw] h-[8vh] mt-8 rounded-lg'>
-              Send password reset email
+            <button className='bg-secondary text-white text-xl font-bold w-[48vw] h-[8vh] mt-6 rounded-lg'>
+              Reset Password
             </button>
           </div>
         </div>
@@ -42,4 +49,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default ConfirmResetPassword;
