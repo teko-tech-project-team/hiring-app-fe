@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import HeroBanner1 from "../../components/HeroBanner1";
+import HeroBanner2 from "../../components/HeroBanner2";
+import HeroBanner3 from "../../components/HeroBanner3";
 import NavigationBar from "../../components/NavigationBar";
 import { NavigationBarAuthLanding } from "../../components/NavigationBarAuth";
 import Testimony from "../../components/Testimony";
@@ -27,6 +29,8 @@ const LandingPage = () => {
     <>
       {checkAuth()}
       <HeroBanner1 />
+      <HeroBanner2 />
+      <HeroBanner3 />
       <Testimony />
     </>
   );
