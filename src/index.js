@@ -5,13 +5,15 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import ProfileJobSeeker from "./pages/ProfileJobSeeker";
+import EditProfileJobSeeker from "./pages/EditProfileJobSeeker";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/profile" element={<ProfileJobSeeker />} />
+      <Route path="/profile/pekerja" element={<ProfileJobSeeker />} />
+      <Route path="/edit-profile/pekerja" element={<EditProfileJobSeeker />} />
     </Routes>
   </BrowserRouter>
 );

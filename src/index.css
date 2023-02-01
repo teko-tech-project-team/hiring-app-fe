@@ -6,7 +6,13 @@
   .btn-primary {
     @apply px-5 py-3 text-white font-bold font-open bg-primary rounded-lg hover:bg-[#8c81c0];
   }
+  .btn-secondary {
+    @apply px-5 py-3 text-white font-bold font-open bg-secondary rounded-lg hover:bg-[#e9a622];
+  }
   .btn-outline-primary {
-    @apply px-5 py-3 text-primary font-bold font-open bg-[#fff] border border-primary rounded-lg hover:bg-primary hover:text-white;
+    @apply px-5 py-3 text-primary font-bold font-open border border-primary rounded-lg hover:bg-primary hover:text-white;
+  }
+  .btn-outline-secondary {
+    @apply px-5 py-3 text-secondary font-bold font-open border border-secondary rounded-lg hover:bg-secondary hover:text-white;
   }
 }

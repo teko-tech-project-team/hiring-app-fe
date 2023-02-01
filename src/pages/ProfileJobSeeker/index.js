@@ -20,7 +20,7 @@ const ProfileJobSeeker = () => {
     if (localStorage.getItem("@userLogin")) {
       if (JSON.parse(localStorage.getItem("@userLogin")).role === "perekrut") {
         return (
-          <Link to="/edit-profile">
+          <Link to="/hire">
             <button className="btn-primary w-full my-6">Hire</button>
           </Link>
         );
