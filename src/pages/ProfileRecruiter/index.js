@@ -13,7 +13,7 @@ const ProfileRecruiter = () => {
   return (
     <>
 
-       <div className='w-full bg-grey pt-[10vh] pb-[10vh]'>      
+        <div className='w-full bg-grey pt-[10vh] pb-[10vh]'>      
             <div className='bg-primary mx-auto w-[80vw] h-[20vh]'>
                 {/* Container Card */}
                 <div className="card w-[50vw] h-[110vh] mx-auto">
@@ -30,7 +30,7 @@ const ProfileRecruiter = () => {
                                 <p className='text-neutral-400'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</p>
                             </div>
                             <div className='mx-auto'>
-                               <Link to='/edit-profile-recruiter'><button className='bg-purple text-white text-xl font-bold w-[25vw] h-[10vh] rounded-lg'>Edit Profile</button></Link>                                                 
+                                <Link to='/edit-profile-recruiter'><button className='bg-primary text-white text-xl font-bold w-[25vw] h-[10vh] rounded-lg'>Edit Profile</button></Link>                                                 
                             </div>
                             <div className='mx-auto'>
                                 <ol className='mt-5'>
@@ -45,7 +45,6 @@ const ProfileRecruiter = () => {
             <div className='bg-white mx-auto w-[80vw] h-[120vh] ' >
             </div>                       
         </div> 
-
     </>
   )
 }
