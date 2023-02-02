@@ -65,6 +65,7 @@ const Testimony = () => {
 
 return (
         <>
+        <div className='bg-grey'>
             <h1 className='text-center text-3xl font-semibold'>Their opinion about peworld</h1>
             <Swiper
             className='w-8/12 h-fit'
@@ -79,7 +80,7 @@ return (
             >          
                 {testi.map((item)=> (
                 <SwiperSlide key={item.id} className='slide'>
-                            <div className="card w-72 shadow-xl">
+                            <div className="card bg-white w-72 shadow-xl">
                                 <figure className="px-10 pt-10">
                                     <img src={item.image} alt="Shoes" className="rounded-xl" />
                                 </figure>
@@ -92,6 +93,7 @@ return (
                 </SwiperSlide>
                 ))}
             </Swiper>
+        </div>
         </>
     )
 

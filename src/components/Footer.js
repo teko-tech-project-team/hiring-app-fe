@@ -5,7 +5,7 @@ const Footer = () => {
       <footer className='footer footer-start p-6 bg-primary text-primary-content'>
         <div className='ml-60'>
           <img
-            src={require('../../assets/images/peworld.png')}
+            src={require('../assets/images/peworld-ungu.png')}
             className=''
             alt='img'
           />

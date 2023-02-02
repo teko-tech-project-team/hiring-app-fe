@@ -5,6 +5,7 @@ import HeroBanner3 from "../../components/HeroBanner3";
 import NavigationBar from "../../components/NavigationBar";
 import { NavigationBarAuthLanding } from "../../components/NavigationBarAuth";
 import Testimony from "../../components/Testimony";
+import Footer from "../../components/Footer"
 
 const LandingPage = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -32,6 +33,7 @@ const LandingPage = () => {
       <HeroBanner2 />
       <HeroBanner3 />
       <Testimony />
+      <Footer/>
     </>
   );
 };
