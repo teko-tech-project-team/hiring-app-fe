@@ -2,14 +2,14 @@ const ResetPassword = () => {
   return (
     <>
       <div className='flex flex-row'>
-        <div className='w-1/2 bg-white'>
+        <div className='w-1/2 bg-white p-12'>
           <img
             src={require('../../assets/images/auth-background.png')}
             className='m-2 h-full'
             alt='img'
           />
         </div>
-        <div className='w-1/2 bg-white m-4 mt-[200px]'>
+        <div className='w-1/2 bg-white m-12 mt-[250px]'>
           <div class='flex flex-col'>
             <label className='label'>
               <span className='label-text text-4xl font-bold'>
@@ -23,7 +23,7 @@ const ResetPassword = () => {
               </span>
             </label>
             <label className='label'>
-              <span className='label-text'>Email</span>
+              <span className='label-text mb-4'>Email</span>
             </label>
             <input
               type='text'

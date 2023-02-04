@@ -10,6 +10,7 @@ import ProfileJobSeeker from './pages/ProfileJobSeeker';
 import EditProfileJobSeeker from './pages/EditProfileJobSeeker';
 import LoginJobSeeker from './pages/LoginJobSeeker/index';
 import RegisterJobSeeker from './pages/RegisterJobSeeker';
+import LoginRecruiter from './pages/LoginRecruter';
 import RegisterRecruiter from './pages/RegisterRecruiter';
 import ResetPassword from './pages/ResetPassword';
 import ConfirmPassword from './pages/ConfirmPassword';
@@ -28,14 +29,24 @@ function App() {
           <Route path='/register-job-seeker' element={<RegisterJobSeeker />} />
           <Route path='/profile-recruiter' element={<ProfileRecruiter />} />
           <Route path='/profile-job-seeker' element={<ProfileJobSeeker />} />
-          <Route path='/edit-profile-recruiter' element={<EditProfileRecruiter />}/>
-          <Route path='/edit-profile-job-seeker' element={<EditProfileJobSeeker />}/>
+          <Route
+            path='/edit-profile-recruiter'
+            element={<EditProfileRecruiter />}
+          />
+          <Route
+            path='/edit-profile-job-seeker'
+            element={<EditProfileJobSeeker />}
+          />
           <Route path='/chat' element={<Chat />} />
           {/* add by teguh */}
+          <Route path='/login-recruiter' element={<LoginRecruiter />} />
           <Route path='/register-recruiter' element={<RegisterRecruiter />} />
           <Route path='/reset-password' element={<ResetPassword />} />
           <Route path='/confirm-password' element={<ConfirmPassword />} />
-          <Route path='/confirm-reset-password' element={<ConfirmResetPassword />}/>
+          <Route
+            path='/confirm-reset-password'
+            element={<ConfirmResetPassword />}
+          />
           <Route path='/request-reset-lock' element={<RequestResetLock />} />
           <Route path='/hire' element={<Hire />} />
           {/* component get started dan footer tapi masih minor */}
