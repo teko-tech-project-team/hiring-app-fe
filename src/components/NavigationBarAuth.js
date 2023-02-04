@@ -1,4 +1,5 @@
 // Imports
+import { Link } from "react-router-dom";
 import bellIcon from "../assets/icons/bell-icon.svg";
 import mailIcon from "../assets/icons/mail-icon.svg";
 
@@ -14,13 +15,25 @@ const NavigationBarAuthLanding = () => {
               width="127"
               className="h-[35px]"
             />
-            {/* <Link to="home"><p className='font-open font-semibold text-xl cursor-pointer hover:text-primary'>Home</p></Link> */}
-            <p className="font-open font-semibold text-xl cursor-pointer hover:text-primary">
+            <Link to="home">
+              <p className="font-open font-semibold text-xl cursor-pointer hover:text-primary">
+                Home
+              </p>
+            </Link>
+            {/* <p className="font-open font-semibold text-xl cursor-pointer hover:text-primary">
               Home
-            </p>
+            </p> */}
           </div>
           {/* // <Link to="/register"><button className='btn-primary'>Daftar</button></Link> */}
-          <button className="btn-primary">Profile</button>
+          <Link
+            to={
+              JSON.parse(localStorage.getItem("@userLogin")).company_name
+                ? "/profile-recruiter"
+                : "/profile-job-seeker"
+            }
+          >
+            <button className="btn-primary">Profile</button>
+          </Link>
         </nav>
       </header>
     </>
@@ -51,7 +64,15 @@ const NavigationBarAuth = ({ photo_profile }) => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <p className="justify-between">Profile</p>
+                <Link
+                  to={
+                    JSON.parse(localStorage.getItem("@userLogin")).company_name
+                      ? "/edit-profile-recruiter"
+                      : "/edit-profile-job-seeker"
+                  }
+                >
+                  <p className="justify-between">Profile</p>
+                </Link>
               </li>
               <li>
                 <p>Logout</p>
