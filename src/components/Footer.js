@@ -1,29 +1,28 @@
 const Footer = () => {
   return (
     <>
-      {/* ini footer */}
-      <footer className='footer footer-start p-6 bg-primary text-primary-content'>
-        <div className='ml-60'>
-          <img
-            src={require('../assets/images/peworld-ungu.png')}
-            className=''
-            alt='img'
-          />
-          <p className='font-bold'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
-            In euismod ipsum et dui rhoncus auctor.
-          </p>
-        </div>
-      </footer>
-      <footer className='footer px-6 bg-primary text-neutral-content p-6 leading-8 border-t-2 '>
-        <div className='grid-flow-col gap-4 md:place-self-center'>
-          <p>2020 Pewworld. All right reserved</p>
-        </div>
-        <div className='grid-flow-col gap-6 md:place-self-center'>
-          <p>Telephone</p>
-          <p>Email</p>
-        </div>
-      </footer>
+      <div className="bg-primary text-white">
+        <footer className="container pt-12 ">
+          <div className="border-b-[1px] border-solid border-white">
+            <img src={require("../assets/images/logoLight.png")} className="h-[3rem] my-5" alt="img" />
+            <p className="font-bold mb-12">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+              In euismod ipsum et dui rhoncus auctor.
+            </p>
+          </div>
+          <div className="pb-10 mt-5">
+            <div className="flex flex-col-reverse md:flex-row justify-between ">
+              <div className="mt-3">
+                <p>2020 Pewworld. All right reserved</p>
+              </div>
+              <div className="flex flex-col md:flex-row">
+                <a className="mr-5">Telephone</a>
+                <a>Email</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
     </>
   );
 };

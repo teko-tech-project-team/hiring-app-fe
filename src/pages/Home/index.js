@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import profile from "../../assets/images/avatar.webp";
+import Footer from "../../components/Footer";
 
 const Home = () => {
   return (
@@ -10,11 +11,11 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="container my-5">
+      <div className="container my-10">
         <form action="">
-          <div className="bg-slate-200 p-3 rounded-xl">
+          <div className="bg-slate-200 p-3 pb-[4.5rem] md:pb-3 rounded-xl">
             <input type="text" placeholder="Type here" class="input input-bordered input-primary w-full max-w-2xl " />
-            <select className="select select-primary w-full ml-1 max-w-xs">
+            <select className="select select-primary w-full mt-2 md:ml-1 md:mt-0 lg:max-w-none xl:max-w-xs">
               <option disabled selected>
                 What is the best TV show?
               </option>
@@ -23,8 +24,8 @@ const Home = () => {
               <option>Breaking Bad</option>
               <option>Walking Dead</option>
             </select>
-            <button className="btn btn-primary float-right" type="submit">
-              Watch
+            <button className="btn btn-primary sm:btn-sm md:btn-md mt-2 md:mt-0 float-right" type="submit">
+              Search
             </button>
           </div>
         </form>
@@ -32,22 +33,24 @@ const Home = () => {
       {[1, 2, 3, 4].map((item) => {
         return (
           <div className="container">
-            <div className="card px-6 py-8 my-5 card-side bg-base-100 shadow-md">
-              <figure>
-                <img src={profile} alt="Movie" />
-              </figure>
+            <div className="card px-6 py-1 my-5 card-side bg-base-100 shadow-md">
               <div className="card-body">
-                <div className="grid grid-cols-2">
-                  <div>
-                    <h2 className="card-title">Firman Subagja</h2>
-                    <p>Web Developer - Freelance</p>
-                    <p>Bandung, Indonesian</p>
-                    <span className="bg-yellow-600 text-white border-2 border-solid border-yellow-300 px-3 rounded-md">PHP</span>
-                    <span className="bg-yellow-600 text-white border-2 border-solid border-yellow-300 px-3 rounded-md ml-3">JavaScript</span>
-                    {/* <div className="card-actions justify-end"></div> */}
+                <div className="grid grid-rows-1 text-center md:grid-cols-2 md:text-left">
+                  <div className="mb-5 flex flex-col md:flex-row md:items-center">
+                    <figure>
+                      <img src={profile} alt="Movie" />
+                    </figure>
+                    <div className="items-center">
+                      <h2 className="font-semibold text-2xl">Firman Subagja</h2>
+                      <p>Web Developer - Freelance</p>
+                      <p>Bandung, Indonesian</p>
+                      <span className="bg-yellow-600 text-white border-2 border-solid border-yellow-300 px-3 rounded-md">PHP</span>
+                      <span className="bg-yellow-600 text-white border-2 border-solid border-yellow-300 px-3 rounded-md ml-3">JavaScript</span>
+                      {/* <div className="card-actions justify-end"></div> */}
+                    </div>
                   </div>
                   <div className="my-auto">
-                    <button className="btn btn-primary float-right">Lihat Profile</button>
+                    <button className="btn btn-primary md:float-right">Lihat Profile</button>
                   </div>
                 </div>
               </div>
@@ -64,6 +67,8 @@ const Home = () => {
           <button className="btn mx-2">4</button>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 };

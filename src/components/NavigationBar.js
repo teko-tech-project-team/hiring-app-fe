@@ -6,15 +6,10 @@ const NavigationBar = () => {
     <>
       <header className="py-8">
         <nav className="container flex justify-between items-center">
-          <img
-            src={require("../assets/images/logo peworld.webp")}
-            alt="logo perworld"
-            width="127"
-            className="h-[35px]"
-          />
+          <img src={require("../assets/images/logo peworld.webp")} alt="logo perworld" width="127" className="h-[35px]" />
           <div className="flex space-x-5">
             <Link to="/login">
-              <button className="btn-light">Masuk</button>
+              <button className="btn btn-link no-underline">Masuk</button>
             </Link>
             {/* <button className="btn-primary btn-outline-primary">Masuk</button> */}
             <Link to="/register">
