@@ -39,10 +39,16 @@ const initialState = {
 
   profile_image: false,
   skills: [],
+  role: "job-seeker",
 };
 
 const jobseeker = (state = initialState, action) => {
   switch (action.type) {
+    case "ROLE":
+      return {
+        ...state,
+        role: action.role,
+      };
     case "IMAGE":
       return {
         ...state,

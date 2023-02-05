@@ -1,9 +1,11 @@
 // Imports
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const NavigationBar = () => {
   const [role, setRole] = useState("job-seeker");
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -20,7 +22,10 @@ const NavigationBar = () => {
               name=""
               id=""
               className="rounded-lg py-3"
-              onChange={(e) => setRole(e.target.value)}
+              onChange={(e) => {
+                setRole(e.target.value);
+                dispatch({ type: "ROLE", role: e.target.value });
+              }}
             >
               <option value="job-seeker" className="py-5">
                 Sebagai pekerja

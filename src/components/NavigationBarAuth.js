@@ -1,9 +1,40 @@
 // Imports
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import bellIcon from "../assets/icons/bell-icon.svg";
 import mailIcon from "../assets/icons/mail-icon.svg";
 
 const NavigationBarAuthLanding = () => {
+  const { role } = useSelector((state) => state.jobseekerReducer);
+
+  const checkRole = () => {
+    if (role && role === "job-seeker") {
+      return (
+        <>
+          <Link
+            to={`/profile-job-seeker/${
+              JSON.parse(localStorage.getItem("@userLogin")).id
+            }`}
+          >
+            <button className="btn-primary">Profile</button>
+          </Link>
+        </>
+      );
+    } else if (role && role === "recruiter") {
+      return (
+        <>
+          <Link
+            to={`/profile-recruiter/${
+              JSON.parse(localStorage.getItem("@userLogin")).user.id
+            }`}
+          >
+            <button className="btn-primary">Profile</button>
+          </Link>
+        </>
+      );
+    }
+  };
+
   return (
     <>
       <header className="py-8">
@@ -27,17 +58,7 @@ const NavigationBarAuthLanding = () => {
             </p> */}
           </div>
           {/* // <Link to="/register"><button className='btn-primary'>Daftar</button></Link> */}
-          <Link
-            to={
-              JSON.parse(localStorage.getItem("@userLogin")).user.company_name
-                ? `/profile-recruiter/${
-                    JSON.parse(localStorage.getItem("@userLogin")).user.id
-                  }`
-                : "/profile-job-seeker"
-            }
-          >
-            <button className="btn-primary">Profile</button>
-          </Link>
+          {checkRole()}
         </nav>
       </header>
     </>
@@ -45,6 +66,61 @@ const NavigationBarAuthLanding = () => {
 };
 
 const NavigationBarAuth = ({ photo_profile }) => {
+  const { role } = useSelector((state) => state.jobseekerReducer);
+  const navigate = useNavigate();
+
+  const checkRoleProfile = () => {
+    if (role && role === "job-seeker") {
+      return (
+        <>
+          <Link
+            to={`/profile-job-seeker/${
+              JSON.parse(localStorage.getItem("@userLogin")).id
+            }`}
+          >
+            <p>Profile</p>
+          </Link>
+        </>
+      );
+    } else if (role && role === "recruiter") {
+      return (
+        <>
+          <Link
+            to={`/profile-recruiter/${
+              JSON.parse(localStorage.getItem("@userLogin")).user.id
+            }`}
+          >
+            <p>Profile</p>
+          </Link>
+        </>
+      );
+    }
+  };
+
+  const checkRoleEdit = () => {
+    if (role && role === "job-seeker") {
+      return (
+        <>
+          <Link to={`/edit-profile-job-seeker`}>
+            <p>Edit Profile</p>
+          </Link>
+        </>
+      );
+    } else if (role && role === "recruiter") {
+      return (
+        <>
+          <Link
+            to={`/edit-profile-recruiter/${
+              JSON.parse(localStorage.getItem("@userLogin")).user.id
+            }`}
+          >
+            <p>Edit Profile</p>
+          </Link>
+        </>
+      );
+    }
+  };
+
   const checkProfile = () => {
     if (photo_profile === undefined) {
       return (
@@ -68,7 +144,7 @@ const NavigationBarAuth = ({ photo_profile }) => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link
+                {/* <Link
                   to={
                     JSON.parse(localStorage.getItem("@userLogin")).user
                       .company_name
@@ -79,10 +155,11 @@ const NavigationBarAuth = ({ photo_profile }) => {
                   }
                 >
                   <p className="justify-between">Profile</p>
-                </Link>
+                </Link> */}
+                {checkRoleProfile()}
               </li>
               <li>
-                <Link
+                {/* <Link
                   to={
                     JSON.parse(localStorage.getItem("@userLogin")).user
                       .company_name
@@ -93,10 +170,18 @@ const NavigationBarAuth = ({ photo_profile }) => {
                   }
                 >
                   <p className="justify-between">Edit Profile</p>
-                </Link>
+                </Link> */}
+                {checkRoleEdit()}
               </li>
               <li>
-                <p>Logout</p>
+                <p
+                  onClick={() => {
+                    localStorage.removeItem("@userLogin");
+                    navigate("/");
+                  }}
+                >
+                  Logout
+                </p>
               </li>
             </ul>
           </div>
@@ -121,7 +206,14 @@ const NavigationBarAuth = ({ photo_profile }) => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <p>Profile</p>
-              <p>Logout</p>
+              <p
+                onClick={() => {
+                  localStorage.removeItem("@userLogin");
+                  navigate("/");
+                }}
+              >
+                Logout
+              </p>
             </div>
           </div>
         </>
@@ -140,6 +232,9 @@ const NavigationBarAuth = ({ photo_profile }) => {
               width="127"
               className="h-[35px]"
             />
+          </Link>
+          <Link to="/home">
+            <p className="text-xl ml-6 hover:text-primary">Home</p>
           </Link>
         </div>
         <div className="flex-none space-x-5">
