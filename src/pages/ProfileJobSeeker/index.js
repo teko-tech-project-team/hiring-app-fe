@@ -46,11 +46,9 @@ const ProfileJobSeeker = () => {
   useEffect(() => {
     setactiveTab("portofolio");
     if (localStorage.getItem("@userLogin")) {
-      if (localStorage.getItem("@userLogin")) {
-        setIsLogin(true);
-      } else {
-        setIsLogin(false);
-      }
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
     }
   }, []);
 

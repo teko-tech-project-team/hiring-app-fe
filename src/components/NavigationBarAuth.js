@@ -29,8 +29,10 @@ const NavigationBarAuthLanding = () => {
           {/* // <Link to="/register"><button className='btn-primary'>Daftar</button></Link> */}
           <Link
             to={
-              JSON.parse(localStorage.getItem("@userLogin")).company_name
-                ? "/profile-recruiter"
+              JSON.parse(localStorage.getItem("@userLogin")).user.company_name
+                ? `/profile-recruiter/${
+                    JSON.parse(localStorage.getItem("@userLogin")).user.id
+                  }`
                 : "/profile-job-seeker"
             }
           >
@@ -54,12 +56,10 @@ const NavigationBarAuth = ({ photo_profile }) => {
             >
               <div className="avatar">
                 <div className="w-16 rounded-full">
-                  <Link to="/">
-                    <img
-                      src={require("../assets/images/avatar.webp")}
-                      alt="profile"
-                    />
-                  </Link>
+                  <img
+                    src={require("../assets/images/avatar.webp")}
+                    alt="profile"
+                  />
                 </div>
               </div>
             </label>
@@ -70,8 +70,11 @@ const NavigationBarAuth = ({ photo_profile }) => {
               <li>
                 <Link
                   to={
-                    JSON.parse(localStorage.getItem("@userLogin")).company_name
-                      ? "/profile-recruiter"
+                    JSON.parse(localStorage.getItem("@userLogin")).user
+                      .company_name
+                      ? `/profile-recruiter/${
+                          JSON.parse(localStorage.getItem("@userLogin")).user.id
+                        }`
                       : "/profile-job-seeker"
                   }
                 >
@@ -81,8 +84,11 @@ const NavigationBarAuth = ({ photo_profile }) => {
               <li>
                 <Link
                   to={
-                    JSON.parse(localStorage.getItem("@userLogin")).company_name
-                      ? "/edit-profile-recruiter"
+                    JSON.parse(localStorage.getItem("@userLogin")).user
+                      .company_name
+                      ? `/edit-profile-recruiter/${
+                          JSON.parse(localStorage.getItem("@userLogin")).user.id
+                        }`
                       : "/edit-profile-job-seeker"
                   }
                 >

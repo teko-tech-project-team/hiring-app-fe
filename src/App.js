@@ -33,7 +33,10 @@ function App() {
               path="/register-job-seeker"
               element={<RegisterJobSeeker />}
             />
-            <Route path="/profile-recruiter" element={<ProfileRecruiter />} />
+            <Route
+              path="/profile-recruiter/:id"
+              element={<ProfileRecruiter />}
+            />
             <Route path="/profile-job-seeker" element={<ProfileJobSeeker />} />
             <Route
               path="/edit-profile-recruiter"
