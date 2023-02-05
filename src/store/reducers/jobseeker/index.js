@@ -5,9 +5,14 @@ import {
   GET_JOBSEEKER,
   ADD_PORTFOLIO,
   GET_ALL_PORTFOLIO,
+  GET_ALL_JOBSEEKER,
 } from "../../actions/actionJobseeker";
 
 const initialState = {
+  allJobseekerResult: false,
+  allJobseekerLoading: false,
+  allJobseekerError: false,
+
   getJobseekerResult: false,
   getJobseekerLoading: false,
   getJobseekerError: false,
@@ -47,6 +52,13 @@ const jobseeker = (state = initialState, action) => {
       return {
         ...state,
         skills: action.skills,
+      };
+    case GET_ALL_JOBSEEKER:
+      return {
+        ...state,
+        allJobseekerResult: action.payload.data,
+        allJobseekerLoading: action.payload.loading,
+        allJobseekerError: action.payload.errorMessage,
       };
     case GET_JOBSEEKER:
       return {
