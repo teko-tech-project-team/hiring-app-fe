@@ -19,6 +19,7 @@ import RequestResetLock from "./pages/RequestResetLock";
 import Hire from "./pages/Hire";
 import { Provider } from "react-redux";
 import store from "./store/reducers";
+import NotFound from "./pages/404/404";
 
 function App() {
   return (
@@ -37,7 +38,10 @@ function App() {
               path="/profile-recruiter/:id"
               element={<ProfileRecruiter />}
             />
-            <Route path="/profile-job-seeker" element={<ProfileJobSeeker />} />
+            <Route
+              path="/profile-job-seeker/:id"
+              element={<ProfileJobSeeker />}
+            />
             <Route
               path="/edit-profile-recruiter"
               element={<EditProfileRecruiter />}
@@ -59,6 +63,7 @@ function App() {
             <Route path="/request-reset-lock" element={<RequestResetLock />} />
             <Route path="/hire" element={<Hire />} />
             {/* component get started dan footer tapi masih minor */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
       </Provider>

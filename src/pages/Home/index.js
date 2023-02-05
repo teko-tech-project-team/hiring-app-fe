@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 // import profile from "../../assets/images/avatar.webp";
 import Footer from "../../components/Footer";
 import { getAllJobseeker } from "../../store/actions/actionJobseeker";
@@ -86,9 +87,11 @@ const Home = () => {
                       </div>
                     </div>
                     <div className="my-auto">
-                      <button className="btn btn-primary md:float-right">
-                        Lihat Profile
-                      </button>
+                      <Link to={`/profile-job-seeker/${jobseeker.id}`}>
+                        <button className="btn btn-primary md:float-right">
+                          Lihat Profile
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
