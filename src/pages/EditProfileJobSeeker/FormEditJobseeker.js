@@ -7,7 +7,9 @@ import "./edit.css";
 
 const FormEditJobseeker = () => {
   const dispatch = useDispatch();
-  const { profile_image } = useSelector((state) => state.jobseekerReducer);
+  const { profile_image, skills } = useSelector(
+    (state) => state.jobseekerReducer
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +23,7 @@ const FormEditJobseeker = () => {
     const formdata = new FormData(e.target);
     const id = JSON.parse(localStorage.getItem("@userLogin")).id;
     console.log(profile_image);
+    console.log(skills);
 
     // dispatch(editProfile(id, formdata));
   };
@@ -140,6 +143,12 @@ const FormEditJobseeker = () => {
 const FormSkill = () => {
   const [inputSkill, setInputSkill] = useState("");
   const [skills, setSkill] = useState([]);
+  const dispatch = useDispatch();
+
+  const addSkill = () => {
+    setSkill([...skills, inputSkill]);
+    dispatch({ type: "SKILL", skills: [...skills, inputSkill] });
+  };
 
   return (
     <>
@@ -159,10 +168,7 @@ const FormSkill = () => {
             id="skill"
             onChange={(e) => setInputSkill(e.target.value)}
           />
-          <button
-            className="btn-secondary"
-            onClick={() => setSkill([...skills, inputSkill])}
-          >
+          <button className="btn-secondary" onClick={() => addSkill()}>
             Simpan
           </button>
         </div>
