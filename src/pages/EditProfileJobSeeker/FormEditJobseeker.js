@@ -22,10 +22,12 @@ const FormEditJobseeker = () => {
     e.preventDefault();
     const formdata = new FormData(e.target);
     const id = JSON.parse(localStorage.getItem("@userLogin")).id;
-    console.log(profile_image);
-    console.log(skills);
+    // console.log(profile_image);
+    // console.log(skills);
+    formdata.append("profile_image", profile_image);
+    formdata.append("skills", skills);
 
-    // dispatch(editProfile(id, formdata));
+    dispatch(editProfile(id, formdata));
   };
 
   // const getProvinsi = () => {};

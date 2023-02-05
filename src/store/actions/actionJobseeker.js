@@ -16,7 +16,11 @@ export const editProfile = (id, data) => {
 
     // get data user
     axios
-      .patch(`http://localhost:3001/api/v1/jobseeker/${id}`, data)
+      .patch(`http://localhost:3001/api/v1/jobseeker/${id}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((res) => {
         // success get
         // console.log(res.data);

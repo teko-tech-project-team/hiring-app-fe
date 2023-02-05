@@ -36,7 +36,7 @@ const EditProfileJobSeeker = () => {
   }, []);
 
   const handleImageChange = (e) => {
-    dispatch({ type: "IMAGE", profile_image: e.target.files });
+    dispatch({ type: "IMAGE", profile_image: e.target.files[0] });
   };
 
   return (
