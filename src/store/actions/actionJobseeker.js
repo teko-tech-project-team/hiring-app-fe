@@ -6,6 +6,48 @@ export const ADD_EXPERIENCE = "ADD_EXPERIENCE";
 export const GET_ALL_EXPERIENCE = "GET_ALL_EXPERIENCE";
 export const ADD_PORTFOLIO = "ADD_PORTFOLIO";
 export const GET_ALL_PORTFOLIO = "GET_ALL_PORTFOLIO";
+export const GET_ALL_JOBSEEKER = "GET_ALL_JOBSEEKER";
+
+export const getAllJobseeker = () => {
+  return (dispatch) => {
+    // loading
+    dispatch({
+      type: GET_ALL_JOBSEEKER,
+      payload: {
+        loading: true,
+        data: false,
+        errorMessage: false,
+      },
+    });
+
+    // get data jobseeker
+    axios
+      .get(`http://localhost:3001/api/v1/jobseeker`)
+      .then((res) => {
+        // success get
+        // console.log(res.data);
+        dispatch({
+          type: GET_ALL_JOBSEEKER,
+          payload: {
+            loading: false,
+            data: res.data.Data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+        dispatch({
+          type: GET_ALL_JOBSEEKER,
+          payload: {
+            loading: false,
+            data: false,
+            errorMessage: error.response.data.Data,
+          },
+        });
+      });
+  };
+};
 
 export const getJobseeker = (id) => {
   return (dispatch) => {
