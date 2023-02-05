@@ -67,11 +67,22 @@ const NavigationBarAuth = ({ photo_profile }) => {
                 <Link
                   to={
                     JSON.parse(localStorage.getItem("@userLogin")).company_name
+                      ? "/profile-recruiter"
+                      : "/profile-job-seeker"
+                  }
+                >
+                  <p className="justify-between">Profile</p>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={
+                    JSON.parse(localStorage.getItem("@userLogin")).company_name
                       ? "/edit-profile-recruiter"
                       : "/edit-profile-job-seeker"
                   }
                 >
-                  <p className="justify-between">Profile</p>
+                  <p className="justify-between">Edit Profile</p>
                 </Link>
               </li>
               <li>

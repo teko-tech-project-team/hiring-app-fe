@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { editProfile } from "../../store/actions/actionJobseeker";
+import {
+  addExperience,
+  addPortfolio,
+  editProfile,
+  getAllPortfolio,
+} from "../../store/actions/actionJobseeker";
+import PortofolioItem from "../ProfileJobSeeker/PortfolioItem";
 import "./edit.css";
 // import { readFileSync } from "fs";
 
@@ -146,10 +152,14 @@ const FormSkill = () => {
   const [inputSkill, setInputSkill] = useState("");
   const [skills, setSkill] = useState([]);
   const dispatch = useDispatch();
+  const { getJobseekerResult, getJobseekerLoading, getJobseekerError } =
+    useSelector((state) => state.jobseekerReducer);
 
   const addSkill = () => {
-    setSkill([...skills, inputSkill]);
-    dispatch({ type: "SKILL", skills: [...skills, inputSkill] });
+    if (inputSkill !== "") {
+      setSkill([...skills, inputSkill]);
+      dispatch({ type: "SKILL", skills: [...skills, inputSkill] });
+    }
   };
 
   return (
@@ -175,6 +185,17 @@ const FormSkill = () => {
           </button>
         </div>
         <div className="w-full flex flex-wrap pt-4 gap-3">
+          {getJobseekerResult
+            ? getJobseekerResult.skills.map((skill) => {
+                return (
+                  <>
+                    <p className="p-3 bg-secondary/60 hover:bg-secondary text-white font-semibold rounded-lg text-sm">
+                      {skill}
+                    </p>
+                  </>
+                );
+              })
+            : ""}
           {skills
             ? skills.map((skill) => {
                 return (
@@ -193,9 +214,26 @@ const FormSkill = () => {
 };
 
 const FormPengalamanKerja = () => {
+  const dispatch = useDispatch();
+
+  const handleAddExperience = (e) => {
+    e.preventDefault();
+    const formdata = new FormData(e.target);
+    const id = JSON.parse(localStorage.getItem("@userLogin")).id;
+    formdata.append("id_jobseeker", id);
+    const data = new URLSearchParams(formdata);
+
+    dispatch(addExperience(data));
+    // eslint-disable-next-line no-restricted-globals
+    location.reload();
+  };
+
   return (
     <>
-      <div className="border-2 bg-white rounded-xl p-6 mt-6">
+      <form
+        className="border-2 bg-white rounded-xl p-6 mt-6"
+        onSubmit={(e) => handleAddExperience(e)}
+      >
         <h1 className="text-[30px] card-title mb-3 pt-10 pb-3 pl-10">
           Pengalaman Kerja
         </h1>
@@ -214,6 +252,7 @@ const FormPengalamanKerja = () => {
                 className="w-full border-gray-300 rounded-md"
                 placeholder="Masukan nama perusahaan"
                 id="nama_perusahaan"
+                name="company_name"
               />
             </div>
             <div className="w-1/2">
@@ -225,6 +264,7 @@ const FormPengalamanKerja = () => {
                 className="w-full border-gray-300 rounded-md"
                 placeholder="Masukan posisi"
                 id="posisi"
+                name="position"
               />
             </div>
           </div>
@@ -240,6 +280,7 @@ const FormPengalamanKerja = () => {
                 type="date"
                 className="w-full border-gray-300 rounded-md uppercase"
                 id="tanggal_masuk"
+                name="date_in"
               />
             </div>
             <div className="w-1/2">
@@ -253,6 +294,7 @@ const FormPengalamanKerja = () => {
                 type="date"
                 className="w-full border-gray-300 rounded-md uppercase"
                 id="tanggal_keluar"
+                name="date_out"
               />
             </div>
           </div>
@@ -264,7 +306,7 @@ const FormPengalamanKerja = () => {
               Deskripsi Pekerjaan
             </label>
             <textarea
-              name="deskripsi_pekerjaan"
+              name="job_description"
               id="deskripsi_pekerjaan"
               cols="30"
               rows="10"
@@ -272,19 +314,43 @@ const FormPengalamanKerja = () => {
               placeholder="Deskripsikan pekerjaan anda"
             ></textarea>
           </div>
-          <button className="btn-outline-secondary">
+          <button type="submit" className="btn-outline-secondary">
             Tambah pengalaman kerja
           </button>
         </div>
-      </div>
+      </form>
     </>
   );
 };
 
 const FormPortofolio = () => {
+  const dispatch = useDispatch();
+  const { allPortfolioResult, allPortfolioLoading, allPortfolioError } =
+    useSelector((state) => state.jobseekerReducer);
+
+  const handleaddPortfolio = (e) => {
+    e.preventDefault();
+    const formdata = new FormData(e.target);
+    formdata.append(
+      "id_jobseeker",
+      JSON.parse(localStorage.getItem("@userLogin")).id
+    );
+
+    dispatch(addPortfolio(formdata));
+  };
+
+  useEffect(() => {
+    dispatch(
+      getAllPortfolio(JSON.parse(localStorage.getItem("@userLogin")).id)
+    );
+  }, [dispatch]);
+
   return (
     <>
-      <div className="border-2 bg-white rounded-xl p-6 mt-6">
+      <form
+        className="border-2 bg-white rounded-xl p-6 mt-6"
+        onSubmit={(e) => handleaddPortfolio(e)}
+      >
         <h1 className="text-[30px] card-title mb-3 pt-10 pb-3 pl-10">
           Portfolio
         </h1>
@@ -298,6 +364,7 @@ const FormPortofolio = () => {
             className="w-full border-gray-300 rounded-md"
             placeholder="Masukkan nama aplikasi"
             id="nama-aplikasi"
+            name="app_name"
           />
         </div>
         <div className="mb-4 mt-6">
@@ -312,6 +379,7 @@ const FormPortofolio = () => {
             className="w-full border-gray-300 rounded-md"
             placeholder="Masukkan link repository"
             id="link_repository"
+            name="repository"
           />
         </div>
         <div className="mb-4 mt-6">
@@ -326,14 +394,36 @@ const FormPortofolio = () => {
             className="w-full border-gray-300 rounded-md"
             placeholder="Masukkan link repository"
             id="gambar-portofolio"
+            name="portfolio_image"
             multiple
           />
         </div>
         <hr className="border-t border-[#C4C4C4] my-8" />
-        <button className="btn-outline-secondary w-full">
+        <button type="submit" className="btn-outline-secondary w-full">
           Tambah portofolio
         </button>
-      </div>
+        <hr className="border-t border-[#C4C4C4] my-8" />
+        <div className="grid grid-cols-12 gap-x-5 gap-y-8 py-6 font-open">
+          {allPortfolioResult ? (
+            allPortfolioResult.map((portfolio) => {
+              return (
+                <>
+                  <PortofolioItem
+                    name={portfolio.app_name}
+                    image={`http://localhost:3001/uploads/images/${portfolio.portfolio_image[0].filename}`}
+                  />
+                </>
+              );
+            })
+          ) : allPortfolioLoading ? (
+            <p className="text-center mt-5">Loading</p>
+          ) : allPortfolioError ? (
+            <p className="text-center mt-5">{allPortfolioError}</p>
+          ) : (
+            "Belum memiliki portfolio"
+          )}
+        </div>
+      </form>
     </>
   );
 };
