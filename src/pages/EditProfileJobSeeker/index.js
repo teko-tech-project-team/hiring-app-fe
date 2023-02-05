@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import mapPinIcon from "../../assets/icons/map-pin.svg";
 import phoneIcon from "../../assets/icons/phone.svg";
 import editIcon from "../../assets/icons/edit-pen-icon.svg";
@@ -29,6 +29,7 @@ const EditProfileJobSeeker = () => {
     getJobseekerLoading,
     getJobseekerError,
   } = useSelector((state) => state.jobseekerReducer);
+  console.log(getJobseekerResult);
 
   const checkAuth = () => {
     if (isLogin) {
@@ -96,8 +97,18 @@ const EditProfileJobSeeker = () => {
                     {getJobseekerResult.job_time}
                   </h3>
                   <p className="flex text-base text-[#9EA0A5] mb-2">
-                    <img src={mapPinIcon} alt="map-pin-icon" className="mr-2" />{" "}
-                    {getJobseekerResult.domicile}
+                    {getJobseekerResult.domicile != null ? (
+                      <>
+                        <img
+                          src={mapPinIcon}
+                          alt="map-pin-icon"
+                          className="mr-2"
+                        />{" "}
+                        {getJobseekerResult.domicile}
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </p>
                   <p className="flex text-base text-[#9EA0A5] mb-2">
                     <img src={phoneIcon} alt="phone-icon" className="mr-2" />

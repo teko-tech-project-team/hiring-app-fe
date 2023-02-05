@@ -9,13 +9,15 @@ const NavigationBarAuthLanding = () => {
       <header className="py-8">
         <nav className="container flex justify-between items-center">
           <div className="flex items-center space-x-20">
-            <img
-              src={require("../assets/images/logo peworld.webp")}
-              alt="logo perworld"
-              width="127"
-              className="h-[35px]"
-            />
-            <Link to="home">
+            <Link to="/">
+              <img
+                src={require("../assets/images/logo peworld.webp")}
+                alt="logo perworld"
+                width="127"
+                className="h-[35px]"
+              />
+            </Link>
+            <Link to="/home">
               <p className="font-open font-semibold text-xl cursor-pointer hover:text-primary">
                 Home
               </p>
@@ -52,10 +54,12 @@ const NavigationBarAuth = ({ photo_profile }) => {
             >
               <div className="avatar">
                 <div className="w-16 rounded-full">
-                  <img
-                    src={require("../assets/images/avatar.webp")}
-                    alt="profile"
-                  />
+                  <Link to="/">
+                    <img
+                      src={require("../assets/images/avatar.webp")}
+                      alt="profile"
+                    />
+                  </Link>
                 </div>
               </div>
             </label>
@@ -123,12 +127,14 @@ const NavigationBarAuth = ({ photo_profile }) => {
     <header>
       <div className="navbar container bg-base-100">
         <div className="flex-1">
-          <img
-            src={require("../assets/images/logo peworld.webp")}
-            alt="logo perworld"
-            width="127"
-            className="h-[35px]"
-          />
+          <Link to="/">
+            <img
+              src={require("../assets/images/logo peworld.webp")}
+              alt="logo perworld"
+              width="127"
+              className="h-[35px]"
+            />
+          </Link>
         </div>
         <div className="flex-none space-x-5">
           <div className="dropdown dropdown-end">

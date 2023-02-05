@@ -185,7 +185,7 @@ const FormSkill = () => {
           </button>
         </div>
         <div className="w-full flex flex-wrap pt-4 gap-3">
-          {getJobseekerResult
+          {getJobseekerResult && getJobseekerResult.skills !== null
             ? getJobseekerResult.skills.map((skill) => {
                 return (
                   <>
@@ -418,9 +418,9 @@ const FormPortofolio = () => {
           ) : allPortfolioLoading ? (
             <p className="text-center mt-5">Loading</p>
           ) : allPortfolioError ? (
-            <p className="text-center mt-5">{allPortfolioError}</p>
+            <p className="text-center mt-5 w-max">Belum memiliki portfolio</p>
           ) : (
-            "Belum memiliki portfolio"
+            <p className="text-center mt-5 w-max">Belum memiliki portfolio</p>
           )}
         </div>
       </form>
