@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import propic from "../../assets/images/makmur.jpg";
 import location from "../../assets/icons/location.svg";
 import btn_edit from "../../assets/icons/btn-edit.jpg";
 import { Link } from "react-router-dom";
