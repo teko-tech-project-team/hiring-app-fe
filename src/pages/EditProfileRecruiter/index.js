@@ -72,7 +72,7 @@ const EditProfileRecruiter = () => {
           {getRecruiterResult ? (
             <form className="flex gap-10" onSubmit={(e) => handleSubmit(e)}>
               <div>
-                <div className="card w-[30vw] h-[83vh] pt-8 shadow-xl ml-[8vw] bg-white">
+                <div className="card pt-8 shadow-xl ml-[8vw] bg-white">
                   <img
                     src={`http://localhost:3001/uploads/images/${getRecruiterResult.profile_image}`}
                     alt="Shoes"
@@ -100,12 +100,15 @@ const EditProfileRecruiter = () => {
                         getRecruiterResult.sector}
                     </p>
                     <div className="flex">
-                      {getRecruiterResult.domicile !== "null" && (
+                      {getRecruiterResult.domicile ? (
                         <>
                           <img src={location} alt="location" />
-                          <p className="text-neutral-400 ml-3"></p>
-                          {getRecruiterResult.domicile}
+                          <p className="text-neutral-400 ml-3">
+                            {getRecruiterResult.domicile}
+                          </p>
                         </>
+                      ) : (
+                        ""
                       )}
                     </div>
                     <p className="text-neutral-400">
@@ -186,7 +189,7 @@ const EditProfileRecruiter = () => {
                       type="text"
                       className="w-full border-gray-300 rounded-md"
                       placeholder="Masukan Domisili"
-                      name="domicile"
+                      name="domici  le"
                     />
                   </div>
                   <div className="mb-4">

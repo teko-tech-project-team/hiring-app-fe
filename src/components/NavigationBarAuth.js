@@ -1,14 +1,16 @@
 // Imports
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import bellIcon from "../assets/icons/bell-icon.svg";
 import mailIcon from "../assets/icons/mail-icon.svg";
+import { editStatus, getOrder } from "../store/actions/actionJobseeker";
+import { getOrderRecruiter } from "../store/actions/actionRecruiter";
+import notifIcon from "../assets/icons/notif.svg";
 
 const NavigationBarAuthLanding = () => {
-  const { role } = useSelector((state) => state.jobseekerReducer);
-
   const checkRole = () => {
-    if (role && role === "job-seeker") {
+    if (JSON.parse(localStorage.getItem("@userLogin")).user === undefined) {
       return (
         <>
           <Link
@@ -20,7 +22,9 @@ const NavigationBarAuthLanding = () => {
           </Link>
         </>
       );
-    } else if (role && role === "recruiter") {
+    } else if (
+      JSON.parse(localStorage.getItem("@userLogin")).user !== undefined
+    ) {
       return (
         <>
           <Link
@@ -49,7 +53,7 @@ const NavigationBarAuthLanding = () => {
               />
             </Link>
             <Link to="/home">
-              <p className="font-open font-semibold text-xl cursor-pointer hover:text-primary">
+              <p className="font-open font-semibold md:ml-0 ml-4 text-xl cursor-pointer hover:text-primary">
                 Home
               </p>
             </Link>
@@ -66,11 +70,33 @@ const NavigationBarAuthLanding = () => {
 };
 
 const NavigationBarAuth = ({ photo_profile }) => {
-  const { role } = useSelector((state) => state.jobseekerReducer);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { getOrderResult, getOrderLoading, getOrderError } = useSelector(
+    (state) => state.jobseekerReducer
+  );
+  const {
+    getOrderRecruiterResult,
+    getOrderRecruiterLoading,
+    getOrderRecruiterError,
+  } = useSelector((state) => state.RecruiterReducer);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("@userLogin")).user === undefined) {
+      dispatch(getOrder(JSON.parse(localStorage.getItem("@userLogin")).id));
+    } else if (
+      JSON.parse(localStorage.getItem("@userLogin")).user !== undefined
+    ) {
+      dispatch(
+        getOrderRecruiter(
+          JSON.parse(localStorage.getItem("@userLogin")).user.id
+        )
+      );
+    }
+  }, [dispatch]);
 
   const checkRoleProfile = () => {
-    if (role && role === "job-seeker") {
+    if (JSON.parse(localStorage.getItem("@userLogin")).user === undefined) {
       return (
         <>
           <Link
@@ -82,7 +108,9 @@ const NavigationBarAuth = ({ photo_profile }) => {
           </Link>
         </>
       );
-    } else if (role && role === "recruiter") {
+    } else if (
+      JSON.parse(localStorage.getItem("@userLogin")).user !== undefined
+    ) {
       return (
         <>
           <Link
@@ -98,7 +126,7 @@ const NavigationBarAuth = ({ photo_profile }) => {
   };
 
   const checkRoleEdit = () => {
-    if (role && role === "job-seeker") {
+    if (JSON.parse(localStorage.getItem("@userLogin")).user === undefined) {
       return (
         <>
           <Link to={`/edit-profile-job-seeker`}>
@@ -106,14 +134,12 @@ const NavigationBarAuth = ({ photo_profile }) => {
           </Link>
         </>
       );
-    } else if (role && role === "recruiter") {
+    } else if (
+      JSON.parse(localStorage.getItem("@userLogin")).user !== undefined
+    ) {
       return (
         <>
-          <Link
-            to={`/edit-profile-recruiter/${
-              JSON.parse(localStorage.getItem("@userLogin")).user.id
-            }`}
-          >
+          <Link to={`/edit-profile-recruiter`}>
             <p>Edit Profile</p>
           </Link>
         </>
@@ -121,30 +147,57 @@ const NavigationBarAuth = ({ photo_profile }) => {
     }
   };
 
+  const showImage = () => {
+    if (JSON.parse(localStorage.getItem("@userLogin")).user !== undefined) {
+      return `http://localhost:3001/uploads/images/${
+        JSON.parse(localStorage.getItem("@userLogin")).user.profile_image
+      }`;
+    } else if (
+      JSON.parse(localStorage.getItem("@userLogin")).user === undefined
+    ) {
+      return `http://localhost:3001/uploads/images/${
+        JSON.parse(localStorage.getItem("@userLogin")).profile_image
+      }`;
+    } else {
+      return require("../assets/images/avatar.webp");
+    }
+  };
+
+  // const showImge = () => {
+  //   if (JSON.parse(localStorage.getItem("@userLogin")).user} {
+  //    return `${JSON.parse(localStorage.getItem("@userLogin")).user}`
+  //   }
+  // }
+
   const checkProfile = () => {
-    if (photo_profile === undefined) {
-      return (
-        <>
-          <div className="dropdown dropdown-end">
-            <label
-              tabIndex={0}
-              className="btn btn-ghost btn-circle avatar w-16 h-16"
-            >
-              <div className="avatar">
-                <div className="w-16 rounded-full">
-                  <img
-                    src={require("../assets/images/avatar.webp")}
-                    alt="profile"
-                  />
-                </div>
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                {/* <Link
+    return (
+      <>
+        <div className="dropdown dropdown-end">
+          <label
+            tabIndex={0}
+            className="btn btn-ghost btn-circle avatar w-16 h-16"
+          >
+            <div className="avatar">
+              <img
+                src={showImage()}
+                //         .profile_image
+                // localStorage.getItem("@userLogin")
+                //   ? `http://localhost:3001/uploads/images/${
+                //       JSON.parse(localStorage.getItem("@userLogin")).user
+                //         .profile_image
+                //     }`
+                //   : require("../assets/images/avatar.webp")
+                alt="profile"
+                className="w-16 object-cover rounded-full"
+              />
+            </div>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              {/* <Link
                   to={
                     JSON.parse(localStorage.getItem("@userLogin")).user
                       .company_name
@@ -156,10 +209,10 @@ const NavigationBarAuth = ({ photo_profile }) => {
                 >
                   <p className="justify-between">Profile</p>
                 </Link> */}
-                {checkRoleProfile()}
-              </li>
-              <li>
-                {/* <Link
+              {checkRoleProfile()}
+            </li>
+            <li>
+              {/* <Link
                   to={
                     JSON.parse(localStorage.getItem("@userLogin")).user
                       .company_name
@@ -171,41 +224,9 @@ const NavigationBarAuth = ({ photo_profile }) => {
                 >
                   <p className="justify-between">Edit Profile</p>
                 </Link> */}
-                {checkRoleEdit()}
-              </li>
-              <li>
-                <p
-                  onClick={() => {
-                    localStorage.removeItem("@userLogin");
-                    navigate("/");
-                  }}
-                >
-                  Logout
-                </p>
-              </li>
-            </ul>
-          </div>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <div className="dropdown dropdown-end">
-            <label
-              tabIndex={0}
-              className="btn btn-ghost btn-circle avatar w-16 h-16"
-            >
-              <div className="avatar">
-                <div className="w-16 rounded-full">
-                  <img src={`${photo_profile}`} alt="profile" />
-                </div>
-              </div>
-            </label>
-            <div
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <p>Profile</p>
+              {checkRoleEdit()}
+            </li>
+            <li>
               <p
                 onClick={() => {
                   localStorage.removeItem("@userLogin");
@@ -214,11 +235,33 @@ const NavigationBarAuth = ({ photo_profile }) => {
               >
                 Logout
               </p>
-            </div>
-          </div>
-        </>
-      );
+            </li>
+          </ul>
+        </div>
+      </>
+    );
+  };
+
+  const showNotif = () => {
+    if (JSON.parse(localStorage.getItem("@userLogin")).user === undefined) {
+      if (getOrderResult) {
+        return "jobseeker";
+      }
+    } else if (
+      JSON.parse(localStorage.getItem("@userLogin")).user !== undefined
+    ) {
+      if (getOrderRecruiterResult) {
+        return "recruiter";
+      }
     }
+  };
+
+  const handleSubmit = (id, status) => {
+    const data = new URLSearchParams();
+    data.append("status", status);
+    dispatch(editStatus(id, data));
+    // eslint-disable-next-line no-restricted-globals
+    location.reload();
   };
 
   return (
@@ -242,7 +285,7 @@ const NavigationBarAuth = ({ photo_profile }) => {
             <label tabIndex={0} className="btn btn-ghost btn-circle">
               <div className="indicator">
                 <img src={bellIcon} alt="bell-icon" width="30" height="auto" />
-                <span className="badge badge-sm indicator-item">8</span>
+                <span className="badge badge-sm indicator-item"></span>
               </div>
             </label>
             <div
@@ -251,23 +294,87 @@ const NavigationBarAuth = ({ photo_profile }) => {
             >
               <div className="flex justify-between mb-2">
                 <p>Notifikasi</p>
-                <p>Lihat semua</p>
+                <Link to="/notification">
+                  <p>Lihat semua</p>
+                </Link>
               </div>
-              <div className="flex items-center space-x-2 hover:bg-gray-200 py-2 rounded-xl">
-                <div className="w-16 h-16 rounded-full bg-cover bg-center bg-no-repeat bg-[url(./assets/images/avatar.webp)]"></div>
-                <div className="">
-                  <p className="text-base font-bold">Rehan</p>
-                  <p className="text-sm">Baru saja melihat profile anda!</p>
-                  <p className="text-sm">09.08</p>
-                </div>
-              </div>
+              {showNotif() === "jobseeker" ? (
+                getOrderResult.map((item) => {
+                  return (
+                    <div className="flex items-center space-x-2 hover:bg-gray-200 py-2 rounded-xl">
+                      <div className="w-16 h-16 rounded-full bg-cover bg-center bg-no-repeat bg-[url(./assets/images/avatar.webp)]"></div>
+                      <div className="">
+                        <p className="text-base font-bold">
+                          {item.recruiter_name}
+                        </p>
+                        <p className="text-sm">Mengirim pesan {item.message}</p>
+                        <p className="text-xs mt-1">Tujuan : {item.purpose}</p>
+                        {item.status === "draft" ? (
+                          <div className="flex mt-3">
+                            <button
+                              className="btn-primary text-xs mr-3"
+                              onClick={() => handleSubmit(item.id, "accept")}
+                            >
+                              Terima
+                            </button>
+                            <button
+                              className="btn-outline-primary text-xs"
+                              onClick={() => handleSubmit(item.id, "decline")}
+                            >
+                              Tolak
+                            </button>
+                          </div>
+                        ) : item.status === "accept" ? (
+                          <p>Diterima</p>
+                        ) : (
+                          <>
+                            {console.log(item.status)}
+                            <p>Ditolak</p>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })
+              ) : showNotif() === "recruiter" ? (
+                getOrderRecruiterResult.map((item) => {
+                  return (
+                    <div className="flex items-center space-x-2 hover:bg-gray-200 py-2 rounded-xl">
+                      <div className="w-16 h-16 rounded-full bg-cover bg-center bg-no-repeat bg-[url(./assets/images/avatar.webp)]"></div>
+                      <div className="">
+                        <p className="text-base font-bold">
+                          {item.jobseeker_name}
+                        </p>
+                        <p className="text-sm">Menerima pesan {item.message}</p>
+                        <p className="text-xs mt-1">Tujuan : {item.purpose}</p>
+                        {item.status === "draft" ? (
+                          <div className="flex mt-3">
+                            <p>Sedang proses</p>
+                          </div>
+                        ) : item.status === "accept" ? (
+                          <p>Diterima</p>
+                        ) : (
+                          <p>Ditolak</p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <>
+                  <img src={notifIcon} alt="notifImage" className="mt-5" />
+                  <p className="text-base font-bold text-center mt-5">
+                    Belum ada notifikasi.
+                  </p>
+                </>
+              )}
             </div>
           </div>
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
               <div className="indicator">
                 <img src={mailIcon} alt="bell-icon" width="30" height="auto" />
-                <span className="badge badge-sm indicator-item">8</span>
+                <span className="badge badge-sm indicator-item"></span>
               </div>
             </label>
             <div

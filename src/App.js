@@ -20,6 +20,7 @@ import Hire from "./pages/Hire";
 import { Provider } from "react-redux";
 import store from "./store/reducers";
 import NotFound from "./pages/404/404";
+import Notification from "./pages/Notifikasi/Notification";
 
 function App() {
   return (
@@ -50,7 +51,8 @@ function App() {
               path="/edit-profile-job-seeker"
               element={<EditProfileJobSeeker />}
             />
-            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat" element={<Chat />} />\
+            <Route path="/notification" element={<Notification />}></Route>
             {/* add by teguh */}
             <Route path="/login-recruiter" element={<LoginRecruiter />} />
             <Route path="/register-recruiter" element={<RegisterRecruiter />} />
@@ -61,7 +63,7 @@ function App() {
               element={<ConfirmResetPassword />}
             />
             <Route path="/request-reset-lock" element={<RequestResetLock />} />
-            <Route path="/hire" element={<Hire />} />
+            <Route path="/hire/:id" element={<Hire />} />
             {/* component get started dan footer tapi masih minor */}
             <Route path="*" element={<NotFound />} />
           </Routes>

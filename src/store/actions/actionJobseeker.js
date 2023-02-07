@@ -7,6 +7,8 @@ export const GET_ALL_EXPERIENCE = "GET_ALL_EXPERIENCE";
 export const ADD_PORTFOLIO = "ADD_PORTFOLIO";
 export const GET_ALL_PORTFOLIO = "GET_ALL_PORTFOLIO";
 export const GET_ALL_JOBSEEKER = "GET_ALL_JOBSEEKER";
+export const EDIT_STATUS = "EDIT_STATUS";
+export const GET_ORDER = "GET_ORDER";
 
 export const getAllJobseeker = () => {
   return (dispatch) => {
@@ -293,6 +295,88 @@ export const getAllPortfolio = (id) => {
             loading: false,
             data: false,
             errorMessage: error.response.data.Data,
+          },
+        });
+      });
+  };
+};
+
+export const editStatus = (id, status) => {
+  return (dispatch) => {
+    // loading
+    dispatch({
+      type: EDIT_STATUS,
+      payload: {
+        loading: true,
+        data: false,
+        errorMessage: false,
+      },
+    });
+
+    // get data user
+    axios
+      .patch(`http://localhost:3001/api/v1/order/${id}`, status)
+      .then((res) => {
+        // success get
+        // console.log(res.data);
+        dispatch({
+          type: EDIT_STATUS,
+          payload: {
+            loading: false,
+            data: res.data.Data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+        dispatch({
+          type: EDIT_STATUS,
+          payload: {
+            loading: false,
+            data: false,
+            errorMessage: error.response.data.data,
+          },
+        });
+      });
+  };
+};
+
+export const getOrder = (id) => {
+  return (dispatch) => {
+    // loading
+    dispatch({
+      type: GET_ORDER,
+      payload: {
+        loading: true,
+        data: false,
+        errorMessage: false,
+      },
+    });
+
+    // get data user
+    axios
+      .get(`http://localhost:3001/api/v1/order/jobseeker/${id}`)
+      .then((res) => {
+        // success get
+        // console.log(res.data);
+        dispatch({
+          type: GET_ORDER,
+          payload: {
+            loading: false,
+            data: res.data.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+        dispatch({
+          type: GET_ORDER,
+          payload: {
+            loading: false,
+            data: false,
+            errorMessage: error.response.data.data,
           },
         });
       });

@@ -25,9 +25,9 @@ const ProfileJobSeeker = () => {
 
   const checkRole = () => {
     if (localStorage.getItem("@userLogin")) {
-      if (JSON.parse(localStorage.getItem("@userLogin")).user.company_name) {
+      if (JSON.parse(localStorage.getItem("@userLogin")).user !== undefined) {
         return (
-          <Link to="/hire">
+          <Link to={`/hire/${id}`}>
             <button className="btn-primary w-full my-6">Hire</button>
           </Link>
         );

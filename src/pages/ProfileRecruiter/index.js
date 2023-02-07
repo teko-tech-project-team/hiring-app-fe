@@ -47,61 +47,94 @@ const ProfileRecruiter = () => {
   return (
     <>
       {checkAuth()}
-      <div className="w-full bg-grey pt-[10vh] pb-[10vh]">
-        <div className="bg-primary mx-auto w-[80vw] h-[20vh]">
+      <div className="w-full bg-grey">
+        <div className="bg-primary mx-auto h-[20vh]">
           {/* Container Card */}
           {getRecruiterResult ? (
-            <div className="card w-[50vw] h-[110vh] mx-auto">
-              <figure className="px-10 pt-10">
-                <img src={propic} alt="Shoes" className="rounded-full" />
+            <div className="card mx-auto">
+              <figure className="">
+                <img
+                  src={propic}
+                  alt="Shoes"
+                  className="rounded-full w-60 h-60 mt-[5.5vh]"
+                />
               </figure>
               <div className="card-body text-center pb-0">
                 <h2 className="card-title text-2xl mx-auto">
                   {getRecruiterResult.company_name}
                 </h2>
-                <p className="text-lg h-[0vh]">{getRecruiterResult.sector}</p>
+                <p className="text-lg">{getRecruiterResult.sector}</p>
                 <div className="flex mx-auto pb-3">
-                  <img src={location} alt="location" />
-                  <p className="text-neutral-400 ml-3">
-                    {getRecruiterResult.domicile}
-                  </p>
+                  {getRecruiterResult.domicile !== "null" ? (
+                    <>
+                      <img src={location} alt="location" />
+                      <p className="text-neutral-400 ml-3">
+                        {getRecruiterResult.domicile}
+                      </p>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <p className="text-neutral-400">
-                  {getRecruiterResult.description}
+                  {getRecruiterResult.description !== "null" &&
+                    getRecruiterResult.description}
                 </p>
               </div>
               <div className="mx-auto">
                 <Link to="/edit-profile-recruiter">
-                  <button className="bg-primary text-white text-xl font-bold w-[25vw] h-[10vh] rounded-lg">
-                    Edit Profile
-                  </button>
+                  <button className="btn-primary text-2xl">Edit Profile</button>
                 </Link>
               </div>
               <div className="mx-auto">
                 <ol className="mt-5">
-                  <li className="flex justify-start gap-3 mb-5">
-                    <img src={email_icon} alt="email-img" />
-                    <p className="text-neutral-400">
-                      {getRecruiterResult.email}
-                    </p>
+                  <li className="flex justify-start gap-3 mb-3">
+                    {getRecruiterResult.email !== "null" ? (
+                      <>
+                        <img src={email_icon} alt="email-img" />
+                        <p className="text-neutral-400">
+                          {getRecruiterResult.email}
+                        </p>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </li>
+                  <li className="flex justify-start gap-3 mb-3">
+                    {getRecruiterResult.instagram !== "null" ? (
+                      <>
+                        <img src={ig_icon} alt="ig-img" />
+                        <p className="text-neutral-400">
+                          {getRecruiterResult.instagram}
+                        </p>
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </li>
                   <li className="flex justify-start gap-3 mb-5">
-                    <img src={ig_icon} alt="ig-img" />
-                    <p className="text-neutral-400">
-                      {getRecruiterResult.instagram}
-                    </p>
+                    {getRecruiterResult.phone !== "null" ? (
+                      <>
+                        <img src={phone_icon} alt="phone-img" />
+                        <p className="text-neutral-400">
+                          {getRecruiterResult.phone}
+                        </p>
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </li>
                   <li className="flex justify-start gap-3 mb-5">
-                    <img src={phone_icon} alt="phone-img" />
-                    <p className="text-neutral-400">
-                      {getRecruiterResult.phone}
-                    </p>
-                  </li>
-                  <li className="flex justify-start gap-3 mb-5">
-                    <img src={linkedin_icon} alt="linkedin-img" />
-                    <p className="text-neutral-400">
-                      {getRecruiterResult.linkedin}
-                    </p>
+                    {getRecruiterResult.linkedin !== "null" ? (
+                      <>
+                        <img src={linkedin_icon} alt="linkedin-img" />
+                        <p className="text-neutral-400">
+                          {getRecruiterResult.linkedin}
+                        </p>
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </li>
                 </ol>
               </div>

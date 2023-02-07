@@ -3,13 +3,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 // import profile from "../../assets/images/avatar.webp";
 import Footer from "../../components/Footer";
+import NavigationBar from "../../components/NavigationBar";
+import { NavigationBarAuth } from "../../components/NavigationBarAuth";
 import { getAllJobseeker } from "../../store/actions/actionJobseeker";
-import jobseeker from "../../store/reducers/jobseeker";
 
 const Home = () => {
+  const [isLogin, setIsLogin] = useState(false);
   const dispatch = useDispatch();
   const { allJobseekerResult, allJobseekerLoading, allJobseekerError } =
     useSelector((state) => state.jobseekerReducer);
+
+  const checkAuth = () => {
+    if (isLogin) {
+      return <NavigationBarAuth />;
+    } else {
+      return <NavigationBar />;
+    }
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("@userLogin")) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(getAllJobseeker());
@@ -17,9 +35,12 @@ const Home = () => {
 
   return (
     <>
-      <div className="container bg-primary">
-        <div class="navbar text-white">
-          <p class="btn btn-ghost normal-case text-xl">Top Jobs</p>
+      {checkAuth()}
+      <div className="w-screen bg-primary">
+        <div className="container bg-primary">
+          <div class="navbar text-white">
+            <p class="btn btn-ghost normal-case text-xl">Top Jobs</p>
+          </div>
         </div>
       </div>
 
@@ -28,17 +49,14 @@ const Home = () => {
           <div className="bg-slate-200 p-3 pb-[4.5rem] md:pb-3 rounded-xl">
             <input
               type="text"
-              placeholder="Type here"
+              placeholder="Cari nama pekerjaan"
               class="input input-bordered input-primary w-full max-w-2xl "
             />
             <select className="select select-primary w-full mt-2 md:ml-1 md:mt-0 lg:max-w-none xl:max-w-xs">
-              <option disabled selected>
-                What is the best TV show?
-              </option>
-              <option>Game of Thrones</option>
-              <option>Lost</option>
-              <option>Breaking Bad</option>
-              <option>Walking Dead</option>
+              <option>Fulltime</option>
+              <option>Part time</option>
+              <option>Contract</option>
+              <option>Freelance</option>
             </select>
             <button
               className="btn btn-primary sm:btn-sm md:btn-md mt-2 md:mt-0 float-right"

@@ -19,6 +19,7 @@ import {
 } from "../../store/actions/actionJobseeker";
 
 const EditProfileJobSeeker = () => {
+  const [preview, setPreview] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
   const dispatch = useDispatch();
   const {
@@ -29,7 +30,6 @@ const EditProfileJobSeeker = () => {
     getJobseekerLoading,
     getJobseekerError,
   } = useSelector((state) => state.jobseekerReducer);
-  console.log(getJobseekerResult);
 
   const checkAuth = () => {
     if (isLogin) {
@@ -55,6 +55,8 @@ const EditProfileJobSeeker = () => {
   }, [dispatch]);
 
   const handleImageChange = (e) => {
+    const file = URL.createObjectURL(e.target.files[0]);
+    setPreview(file);
     dispatch({ type: "IMAGE", profile_image: e.target.files[0] });
   };
 
@@ -64,6 +66,51 @@ const EditProfileJobSeeker = () => {
       <div className="w-full h-[50vh] bg-primary">
         <div className="container grid grid-cols-12 gap-x-20 py-20 px-0 ">
           <div className="col-span-4 font-open">
+            {getJobseekerResult === false ? (
+              <>
+                <div className="w-full bg-white rounded-lg p-6">
+                  {preview !== null ? (
+                    <>
+                      <div
+                        className="w-60 h-60 mx-auto rounded-full bg-white bg-cover bg-center bg-no-repeat"
+                        style={{
+                          backgroundImage: `url(${preview})`,
+                        }}
+                      ></div>
+                    </>
+                  ) : (
+                    <div
+                      className="w-60 h-60 mx-auto rounded-full bg-white bg-cover bg-center bg-no-repeat"
+                      style={{
+                        backgroundImage: `url("http://localhost:3001/uploads/images/avatar.webp")`,
+                      }}
+                    ></div>
+                  )}
+                  <input
+                    type="file"
+                    name="profile_image"
+                    id="profile_image"
+                    className="hidden"
+                    onChange={(e) => handleImageChange(e)}
+                  />
+                  <label
+                    htmlFor="profile_image"
+                    className="flex text-[#9EA0A5] font-semibold text-2xl mt-6 justify-center cursor-pointer"
+                  >
+                    <img src={editIcon} alt="edit-icon" className="mr-2" />
+                    Edit
+                  </label>
+                  <button className="btn-primary mt-5 w-full">
+                    Ubah Password
+                  </button>
+                  <button className="btn-outline-primary mt-5 w-full">
+                    Kembali
+                  </button>
+                </div>
+              </>
+            ) : (
+              ""
+            )}
             {getJobseekerResult ? (
               <>
                 <div className="bg-white p-8 rounded-xl border-4">
@@ -118,6 +165,12 @@ const EditProfileJobSeeker = () => {
                     {getJobseekerResult.description}
                   </p>
                 </div>
+                <button className="btn-primary mt-5 w-full">
+                  Ubah Password
+                </button>
+                <button className="btn-outline-primary mt-5 w-full">
+                  Kembali
+                </button>
               </>
             ) : getJobseekerLoading ? (
               <p className="text-center mt-5">Loading ...</p>
@@ -126,8 +179,6 @@ const EditProfileJobSeeker = () => {
             ) : (
               <p className="text-center mt-5">Data kosong </p>
             )}
-            <button className="btn-primary mt-5 w-full">Ubah Password</button>
-            <button className="btn-outline-primary mt-5 w-full">Kembali</button>
             <FormSkill />
             <div className="border-2 bg-white rounded-xl p-6 mt-6">
               <h1 className="text-[30px] card-title mb-3 pt-10 pb-3 pl-10">

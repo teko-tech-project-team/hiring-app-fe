@@ -6,6 +6,8 @@ import {
   ADD_PORTFOLIO,
   GET_ALL_PORTFOLIO,
   GET_ALL_JOBSEEKER,
+  GET_ORDER,
+  EDIT_STATUS,
 } from "../../actions/actionJobseeker";
 
 const initialState = {
@@ -40,6 +42,14 @@ const initialState = {
   profile_image: false,
   skills: [],
   role: "job-seeker",
+
+  getOrderResult: false,
+  getOrderLoading: false,
+  getOrderError: false,
+
+  editStatusResult: false,
+  editStatusLoading: false,
+  editStatusError: false,
 };
 
 const jobseeker = (state = initialState, action) => {
@@ -107,6 +117,20 @@ const jobseeker = (state = initialState, action) => {
         allPortfolioResult: action.payload.data,
         allPortfolioLoading: action.payload.loading,
         allPortfolioError: action.payload.errorMessage,
+      };
+    case GET_ORDER:
+      return {
+        ...state,
+        getOrderResult: action.payload.data,
+        getOrderLoading: action.payload.loading,
+        getOrderError: action.payload.errorMessage,
+      };
+    case EDIT_STATUS:
+      return {
+        ...state,
+        editStatusResult: action.payload.data,
+        editStatusLoading: action.payload.loading,
+        editStatusError: action.payload.errorMessage,
       };
     default:
       return state;

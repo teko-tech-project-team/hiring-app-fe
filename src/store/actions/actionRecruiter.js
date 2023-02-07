@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const GET_RECRUITER_BY_ID = "GET_RECRUITER_BY_ID";
 export const EDIT_RECRUITER_BY_ID = "EDIT_RECRUITER_BY_ID";
+export const GET_ORDER_RECRUITER = "GET_ORDER_RECRUITER";
 
 export const getRecruiter = (id) => {
   return (dispatch) => {
@@ -23,7 +24,7 @@ export const getRecruiter = (id) => {
       timeout: 120000,
     })
       .then((response) => {
-        console.log("Test", id);
+        console.log(response);
         console.log("3. Berhasil get Data : ", response.data.data[0]);
         //berhasil get api
         dispatch({
@@ -89,6 +90,47 @@ export const editRecruiter = (id, data) => {
             loading: false,
             data: false,
             errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
+
+export const getOrderRecruiter = (id) => {
+  return (dispatch) => {
+    // loading
+    dispatch({
+      type: GET_ORDER_RECRUITER,
+      payload: {
+        loading: true,
+        data: false,
+        errorMessage: false,
+      },
+    });
+
+    // get data user
+    axios
+      .get(`http://localhost:3001/api/v1/order/recruiter/${id}`)
+      .then((res) => {
+        // success get
+        // console.log(res.data);
+        dispatch({
+          type: GET_ORDER_RECRUITER,
+          payload: {
+            loading: false,
+            data: res.data.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+        dispatch({
+          type: GET_ORDER_RECRUITER,
+          payload: {
+            loading: false,
+            data: false,
+            errorMessage: error.response.data.data,
           },
         });
       });
