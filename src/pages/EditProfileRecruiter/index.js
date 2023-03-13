@@ -17,6 +17,7 @@ const EditProfileRecruiter = () => {
   const { getRecruiterResult, getRecruiterLoading, getRecruiterError } =
     useSelector((state) => state.RecruiterReducer);
   const dispatch = useDispatch();
+  const [preview, setPreview] = useState(null);
 
   const checkAuth = () => {
     if (isLogin) {
@@ -52,6 +53,11 @@ const EditProfileRecruiter = () => {
     dispatch(editRecruiter(id, formdata));
   };
 
+  const handleImageChange = (e) => {
+    const file = URL.createObjectURL(e.target.files[0]);
+    setPreview(file);
+  };
+
   // const [companyName, setCompanyName] = useState("");
   // const [sector, setSector] = useState("");
   // const [domicile, setDomicile] = useState("");
@@ -70,10 +76,14 @@ const EditProfileRecruiter = () => {
           {/* Profile Company */}
           {getRecruiterResult ? (
             <form className="flex gap-10" onSubmit={(e) => handleSubmit(e)}>
-              <div>
+              <div className="w-[40%]">
                 <div className="card pt-8 shadow-xl ml-[8vw] bg-white">
                   <img
-                    src={`http://localhost:3001/uploads/images/${getRecruiterResult.profile_image}`}
+                    src={
+                      preview === null
+                        ? `https://res.cloudinary.com/djc3odcxg/image/upload/v1678631683/${getRecruiterResult.profile_image}.webp`
+                        : preview
+                    }
                     alt="Shoes"
                     className="w-60 h-60 mx-auto rounded-full bg-white object-cover"
                   />
@@ -82,6 +92,7 @@ const EditProfileRecruiter = () => {
                     name="profile_image"
                     id="profile_image"
                     className="hidden"
+                    onChange={(e) => handleImageChange(e)}
                   />
                   <label
                     htmlFor="profile_image"
@@ -117,21 +128,20 @@ const EditProfileRecruiter = () => {
                   </div>
                 </div>
                 {/* button save */}
-                <div>
+                <div className="w-full pl-[8vw]">
                   <button
                     type="submit"
-                    className="bg-primary text-white text-xl font-bold w-[30vw] ml-[8vw] h-[10vh] mt-3 rounded-lg"
+                    className="bg-primary text-white text-xl font-bold w-full h-[10vh] mt-3 rounded-lg"
                   >
                     Simpan
                   </button>
+                  {/* button back */}
+                  <Link to="/profile-recruiter" className="w-full">
+                    <button className="border-2 border-primary text-primary text-xl font-bold w-full h-[10vh] mt-3 rounded-lg">
+                      Kembali
+                    </button>
+                  </Link>
                 </div>
-
-                {/* button back */}
-                <Link to="/profile-recruiter">
-                  <button className="border-2 border-primary text-primary text-xl font-bold w-[30vw] ml-[8vw] h-[10vh] mt-3 rounded-lg">
-                    Kembali
-                  </button>
-                </Link>
               </div>
               {/* Form */}
               <div className="card w-[50vw] bg-base-100 shadow-xl mx-auto">
@@ -188,7 +198,7 @@ const EditProfileRecruiter = () => {
                       type="text"
                       className="w-full border-gray-300 rounded-md"
                       placeholder="Masukan Domisili"
-                      name="domici  le"
+                      name="domicile"
                     />
                   </div>
                   <div className="mb-4">

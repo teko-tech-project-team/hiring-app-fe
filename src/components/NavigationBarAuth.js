@@ -1,5 +1,5 @@
 // Imports
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import bellIcon from "../assets/icons/bell-icon.svg";
@@ -7,6 +7,7 @@ import mailIcon from "../assets/icons/mail-icon.svg";
 import { editStatus, getOrder } from "../store/actions/actionJobseeker";
 import { getOrderRecruiter } from "../store/actions/actionRecruiter";
 import notifIcon from "../assets/icons/notif.svg";
+import axios from "axios";
 
 const NavigationBarAuthLanding = () => {
   const checkRole = () => {
@@ -75,6 +76,7 @@ const NavigationBarAuth = ({ photo_profile }) => {
   const { getOrderResult, getOrderLoading, getOrderError } = useSelector(
     (state) => state.jobseekerReducer
   );
+  const [data, setData] = useState();
   const {
     getOrderRecruiterResult,
     getOrderRecruiterLoading,
@@ -94,6 +96,28 @@ const NavigationBarAuth = ({ photo_profile }) => {
       );
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("@userLogin")).user !== undefined) {
+      axios
+        .get(
+          `http://localhost:3001/api/v1/recruiter/${
+            JSON.parse(localStorage.getItem("@userLogin")).user.id
+          }`
+        )
+        .then((res) => setData(res.data.data[0]));
+    } else if (
+      JSON.parse(localStorage.getItem("@userLogin")).user === undefined
+    ) {
+      axios
+        .get(
+          `http://localhost:3001/api/v1/jobseeker/${
+            JSON.parse(localStorage.getItem("@userLogin")).id
+          }`
+        )
+        .then((res) => setData(res.data.Data));
+    }
+  }, []);
 
   const checkRoleProfile = () => {
     if (JSON.parse(localStorage.getItem("@userLogin")).user === undefined) {
@@ -147,28 +171,6 @@ const NavigationBarAuth = ({ photo_profile }) => {
     }
   };
 
-  const showImage = () => {
-    if (JSON.parse(localStorage.getItem("@userLogin")).user !== undefined) {
-      return `http://localhost:3001/uploads/images/${
-        JSON.parse(localStorage.getItem("@userLogin")).user.profile_image
-      }`;
-    } else if (
-      JSON.parse(localStorage.getItem("@userLogin")).user === undefined
-    ) {
-      return `http://localhost:3001/uploads/images/${
-        JSON.parse(localStorage.getItem("@userLogin")).profile_image
-      }`;
-    } else {
-      return require("../assets/images/avatar.webp");
-    }
-  };
-
-  // const showImge = () => {
-  //   if (JSON.parse(localStorage.getItem("@userLogin")).user} {
-  //    return `${JSON.parse(localStorage.getItem("@userLogin")).user}`
-  //   }
-  // }
-
   const checkProfile = () => {
     return (
       <>
@@ -179,7 +181,9 @@ const NavigationBarAuth = ({ photo_profile }) => {
           >
             <div className="avatar">
               <img
-                src={showImage()}
+                src={`https://res.cloudinary.com/djc3odcxg/image/upload/v1678631683/${
+                  data && data.profile_image
+                }`}
                 //         .profile_image
                 // localStorage.getItem("@userLogin")
                 //   ? `http://localhost:3001/uploads/images/${

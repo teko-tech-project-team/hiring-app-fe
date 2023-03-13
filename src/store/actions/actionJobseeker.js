@@ -195,7 +195,7 @@ export const getAllExperience = (id) => {
       .get(`http://localhost:3001/api/v1/jobseeker/experience/all/${id}`)
       .then((res) => {
         // success get
-        // console.log(res.data);
+        console.log(res.data);
         dispatch({
           type: GET_ALL_EXPERIENCE,
           payload: {

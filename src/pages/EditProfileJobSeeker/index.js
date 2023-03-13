@@ -66,7 +66,7 @@ const EditProfileJobSeeker = () => {
       <div className="w-full h-[50vh] bg-primary">
         <div className="container grid grid-cols-12 gap-x-20 py-20 px-0 ">
           <div className="col-span-4 font-open">
-            {getJobseekerResult === false ? (
+            {/* {getJobseekerResult === false ? (
               <>
                 <div className="w-full bg-white rounded-lg p-6">
                   {preview !== null ? (
@@ -82,7 +82,7 @@ const EditProfileJobSeeker = () => {
                     <div
                       className="w-60 h-60 mx-auto rounded-full bg-white bg-cover bg-center bg-no-repeat"
                       style={{
-                        backgroundImage: `url("http://localhost:3001/uploads/images/avatar.webp")`,
+                        backgroundImage: `url('https://res.cloudinary.com/djc3odcxg/image/upload/v1678631683/${getJobseekerResult.profile_image}.webp')`,
                       }}
                     ></div>
                   )}
@@ -110,15 +110,19 @@ const EditProfileJobSeeker = () => {
               </>
             ) : (
               ""
-            )}
+            )} */}
             {getJobseekerResult ? (
               <>
                 <div className="bg-white p-8 rounded-xl border-4">
                   <div
                     className="w-60 h-60 mx-auto rounded-full bg-white bg-cover bg-center bg-no-repeat"
-                    style={{
-                      backgroundImage: `url("http://localhost:3001/uploads/images/${getJobseekerResult.profile_image}")`,
-                    }}
+                    style={
+                      preview === null
+                        ? {
+                            backgroundImage: `url("https://res.cloudinary.com/djc3odcxg/image/upload/v1678631683/${getJobseekerResult.profile_image}.webp")`,
+                          }
+                        : { backgroundImage: `url(${preview})` }
+                    }
                   ></div>
                   <input
                     type="file"

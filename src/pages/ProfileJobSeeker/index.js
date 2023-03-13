@@ -69,7 +69,7 @@ const ProfileJobSeeker = () => {
                 <div
                   className="w-60 h-60 mx-auto rounded-full bg-white bg-cover bg-center bg-no-repeat"
                   style={{
-                    backgroundImage: `url("http://localhost:3001/uploads/images/${getJobseekerResult.profile_image}")`,
+                    backgroundImage: `url("https://res.cloudinary.com/djc3odcxg/image/upload/v1678631683/${getJobseekerResult.profile_image}.webp")`,
                   }}
                 ></div>
                 <h1 className="mt-8 text-2xl font-semibold text-[#1F2A36]">

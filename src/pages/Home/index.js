@@ -77,7 +77,7 @@ const Home = () => {
                     <div className="mb-5 flex flex-col md:flex-row md:items-center">
                       <figure>
                         <img
-                          src={`http://localhost:3001/uploads/images/${jobseeker.profile_image}`}
+                          src={`https://res.cloudinary.com/djc3odcxg/image/upload/v1678631683/${jobseeker.profile_image}.webp`}
                           alt="Movie"
                           className="rounded-full w-32 h-32 mr-5"
                         />
@@ -88,7 +88,7 @@ const Home = () => {
                         </h2>
                         <p>{jobseeker.profession}</p>
                         <p>{jobseeker.domicile}</p>
-                        <div className="flex flex-wrap w-full space-x-3 mt-2 font-open">
+                        {/* <div className="flex flex-wrap w-full space-x-3 mt-2 font-open">
                           {jobseeker.skills !== null
                             ? jobseeker.skills.map((skill) => {
                                 return (
@@ -100,7 +100,7 @@ const Home = () => {
                                 );
                               })
                             : ""}
-                        </div>
+                        </div> */}
                         {/* <div className="card-actions justify-end"></div> */}
                       </div>
                     </div>

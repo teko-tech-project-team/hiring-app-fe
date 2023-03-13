@@ -17,6 +17,8 @@ const FormEditJobseeker = () => {
     (state) => state.jobseekerReducer
   );
   const navigate = useNavigate();
+  const { getJobseekerResult, getJobseekerLoading, getJobseekerError } =
+    useSelector((state) => state.jobseekerReducer);
 
   useEffect(() => {
     if (!localStorage.getItem("@userLogin")) {
@@ -38,114 +40,133 @@ const FormEditJobseeker = () => {
 
   // const getProvinsi = () => {};
 
-  return (
-    <>
-      <form
-        className="border-2 bg-white rounded-xl"
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <h1 className="text-[30px] card-title mb-3 pt-10 pb-3 pl-10">
-          Data Diri
-        </h1>
-        <hr className="border-t border-[#C4C4C4]" />
-        <div className="card-body">
-          <div className="mb-4 mt-4">
-            <label htmlFor="nama-lengkap" className="block text-slate-400 mb-1">
-              Nama Lengkap
-            </label>
-            <input
-              type="text"
-              className="w-full border-gray-300 rounded-md"
-              placeholder="Masukkan Nama Lengkap"
-              id="nama-lengkap"
-              name="fullname"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="profession" className="block text-slate-400 mb-1">
-              Profesi
-            </label>
-            <input
-              type="text"
-              className="w-full border-gray-300 rounded-md"
-              placeholder="Masukan profesi"
-              id="profession"
-              name="profession"
-            />
-          </div>
-          <div className="mb-4 relative">
-            <label htmlFor="domisili" className="block text-slate-400 mb-1">
-              Domisili
-            </label>
-            <input
-              type="text"
-              className="w-full border-gray-300 rounded-md input-domisili"
-              placeholder="Masukan domisili"
-              id="domisili"
-              name="domicile"
-            />
-            {/* <div className="bg-white w-full h-96 border-2 rounded-xl p-4 absolute hidden daerah">
+  if (getJobseekerResult) {
+    return (
+      <>
+        <form
+          className="border-2 bg-white rounded-xl"
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <h1 className="text-[30px] card-title mb-3 pt-10 pb-3 pl-10">
+            Data Diri
+          </h1>
+          <hr className="border-t border-[#C4C4C4]" />
+          <div className="card-body">
+            <div className="mb-4 mt-4">
+              <label
+                htmlFor="nama-lengkap"
+                className="block text-slate-400 mb-1"
+              >
+                Nama Lengkap
+              </label>
+              <input
+                type="text"
+                className="w-full border-gray-300 rounded-md"
+                placeholder="Masukkan Nama Lengkap"
+                id="nama-lengkap"
+                name="fullname"
+                defaultValue={getJobseekerResult.fullname}
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="profession" className="block text-slate-400 mb-1">
+                Profesi
+              </label>
+              <input
+                type="text"
+                className="w-full border-gray-300 rounded-md"
+                placeholder="Masukan profesi"
+                id="profession"
+                name="profession"
+                defaultValue={getJobseekerResult.profession}
+              />
+            </div>
+            <div className="mb-4 relative">
+              <label htmlFor="domisili" className="block text-slate-400 mb-1">
+                Domisili
+              </label>
+              <input
+                type="text"
+                className="w-full border-gray-300 rounded-md input-domisili"
+                placeholder="Masukan domisili"
+                id="domisili"
+                name="domicile"
+                defaultValue={getJobseekerResult.domicile}
+              />
+              {/* <div className="bg-white w-full h-96 border-2 rounded-xl p-4 absolute hidden daerah">
               {getProvinsi()}
             </div> */}
-          </div>
-          <div className="mb-4 flex space-x-5">
-            <div>
-              <label htmlFor="instagram" className="block text-slate-400 mb-1">
-                Instagram
-              </label>
-              <input
-                type="text"
-                className="w-full border-gray-300 rounded-md"
-                placeholder="Masukan username instagram"
-                id="instagram"
-                name="instagram"
-              />
             </div>
-            <div>
-              <label htmlFor="github" className="block text-slate-400 mb-1">
-                Github
-              </label>
-              <input
-                type="text"
-                className="w-full border-gray-300 rounded-md"
-                placeholder="Masukan username github"
-                id="github"
-                name="github"
-              />
+            <div className="mb-4 flex space-x-5">
+              <div>
+                <label
+                  htmlFor="instagram"
+                  className="block text-slate-400 mb-1"
+                >
+                  Instagram
+                </label>
+                <input
+                  type="text"
+                  className="w-full border-gray-300 rounded-md"
+                  placeholder="Masukan username instagram"
+                  id="instagram"
+                  name="instagram"
+                  defaultValue={getJobseekerResult.instagram}
+                />
+              </div>
+              <div>
+                <label htmlFor="github" className="block text-slate-400 mb-1">
+                  Github
+                </label>
+                <input
+                  type="text"
+                  className="w-full border-gray-300 rounded-md"
+                  placeholder="Masukan username github"
+                  id="github"
+                  name="github"
+                  defaultValue={getJobseekerResult.github}
+                />
+              </div>
+              <div>
+                <label htmlFor="gitlab" className="block text-slate-400 mb-1">
+                  Gitlab
+                </label>
+                <input
+                  type="text"
+                  className="w-full border-gray-300 rounded-md"
+                  placeholder="Masukan username gitlab"
+                  id="gitlab"
+                  name="gitlab"
+                  defaultValue={getJobseekerResult.gitlab}
+                />
+              </div>
             </div>
-            <div>
-              <label htmlFor="gitlab" className="block text-slate-400 mb-1">
-                Gitlab
+            <div className="mb-4 mt-4">
+              <label htmlFor="deskripsi" className="block text-slate-400 mb-1">
+                Deskripsi singkat
               </label>
-              <input
-                type="text"
+              <textarea
+                name="description"
+                id="deskripsi"
+                cols="30"
+                rows="10"
                 className="w-full border-gray-300 rounded-md"
-                placeholder="Masukan username gitlab"
-                id="gitlab"
-                name="gitlab"
-              />
+                placeholder="Tuliskan deskripsi singkat"
+                defaultValue={getJobseekerResult.description}
+              ></textarea>
+              <button type="submit" className="btn-secondary mt-4 w-1/3">
+                Simpan
+              </button>
             </div>
           </div>
-          <div className="mb-4 mt-4">
-            <label htmlFor="deskripsi" className="block text-slate-400 mb-1">
-              Deskripsi singkat
-            </label>
-            <textarea
-              name="description"
-              id="deskripsi"
-              cols="30"
-              rows="10"
-              className="w-full border-gray-300 rounded-md"
-              placeholder="Tuliskan deskripsi singkat"
-            ></textarea>
-            <button type="submit" className="btn-secondary mt-4 w-1/3">
-              Simpan
-            </button>
-          </div>
-        </div>
-      </form>
-    </>
-  );
+        </form>
+      </>
+    );
+  } else if (getJobseekerLoading) {
+    return <p className="text-center mt-5">Loading ...</p>;
+  } else {
+    return <p className="text-center mt-5">{getJobseekerError}</p>;
+  }
 };
 
 const FormSkill = () => {
@@ -410,7 +431,7 @@ const FormPortofolio = () => {
                 <>
                   <PortofolioItem
                     name={portfolio.app_name}
-                    image={`http://localhost:3001/uploads/images/${portfolio.portfolio_image[0].filename}`}
+                    image={`https://res.cloudinary.com/djc3odcxg/image/upload/v1678631683/${portfolio.portfolio_image[0].filename}.webp`}
                   />
                 </>
               );

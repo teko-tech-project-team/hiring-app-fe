@@ -54,9 +54,9 @@ const ProfileRecruiter = () => {
             <div className="card mx-auto">
               <figure className="">
                 <img
-                  src={propic}
+                  src={`https://res.cloudinary.com/djc3odcxg/image/upload/v1678631683/${getRecruiterResult.profile_image}.webp`}
                   alt="Shoes"
-                  className="rounded-full w-60 h-60 mt-[5.5vh]"
+                  className="rounded-full w-60 h-60 mt-[5.5vh] object-cover"
                 />
               </figure>
               <div className="card-body text-center pb-0">
@@ -76,7 +76,7 @@ const ProfileRecruiter = () => {
                     ""
                   )}
                 </div>
-                <p className="text-neutral-400">
+                <p className="text-neutral-400 mx-auto w-[40%]">
                   {getRecruiterResult.description !== "null" &&
                     getRecruiterResult.description}
                 </p>

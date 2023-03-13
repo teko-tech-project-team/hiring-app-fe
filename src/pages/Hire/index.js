@@ -66,7 +66,7 @@ const Hire = () => {
                 <div className="card card-compact w-96 bg-base-100 shadow-2xl">
                   <figure>
                     <img
-                      src={`http://localhost:3001/uploads/images/${getJobseekerResult.profile_image}`}
+                      src={`https://res.cloudinary.com/djc3odcxg/image/upload/v1678631683/${getJobseekerResult.profile_image}.webp`}
                       className="mt-4 align-item-center"
                       alt="img"
                     />

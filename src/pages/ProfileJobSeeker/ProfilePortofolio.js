@@ -13,7 +13,7 @@ const ProfilePortofolio = () => {
               return (
                 <PortofolioItem
                   name={portfolio.app_name}
-                  image={`http://localhost:3001/uploads/images/${portfolio.portfolio_image[0].filename}`}
+                  image={`https://res.cloudinary.com/djc3odcxg/image/upload/v1678631683/${portfolio.portfolio_image[0].filename}.webp`}
                 />
               );
             })
