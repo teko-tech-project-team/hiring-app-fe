@@ -17,7 +17,10 @@ const RegisterJobSeeker = () => {
 
     if (password === confirm) {
       axios
-        .post(`http://localhost:3001/api/v1/auth/register-jobseeker`, data)
+        .post(
+          `https://peworlds.herokuapp.com/api/v1/auth/register-jobseeker`,
+          data
+        )
         .then((res) => {
           setError(false);
           setMessage(res.data.Data);

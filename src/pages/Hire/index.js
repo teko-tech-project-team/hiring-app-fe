@@ -46,7 +46,7 @@ const Hire = () => {
     });
 
     axios
-      .post(`http://localhost:3001/api/v1/order`, data)
+      .post(`https://peworlds.herokuapp.com/api/v1/order`, data)
       .then((res) => {
         alert("Pesan telah dikirim!");
         navigate("/home");

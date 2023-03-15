@@ -101,7 +101,7 @@ const NavigationBarAuth = ({ photo_profile }) => {
     if (JSON.parse(localStorage.getItem("@userLogin")).user !== undefined) {
       axios
         .get(
-          `http://localhost:3001/api/v1/recruiter/${
+          `https://peworlds.herokuapp.com/api/v1/recruiter/${
             JSON.parse(localStorage.getItem("@userLogin")).user.id
           }`
         )
@@ -111,7 +111,7 @@ const NavigationBarAuth = ({ photo_profile }) => {
     ) {
       axios
         .get(
-          `http://localhost:3001/api/v1/jobseeker/${
+          `https://peworlds.herokuapp.com/api/v1/jobseeker/${
             JSON.parse(localStorage.getItem("@userLogin")).id
           }`
         )

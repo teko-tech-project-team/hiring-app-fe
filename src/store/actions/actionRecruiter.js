@@ -20,7 +20,7 @@ export const getRecruiter = (id) => {
     //get API
     axios({
       method: "GET",
-      url: `http://localhost:3001/api/v1/recruiter/${id}`,
+      url: `https://peworlds.herokuapp.com/api/v1/recruiter/${id}`,
       timeout: 120000,
     })
       .then((response) => {
@@ -65,7 +65,7 @@ export const editRecruiter = (id, data) => {
 
     // get data user
     axios
-      .patch(`http://localhost:3001/api/v1/recruiter/${id}`, data, {
+      .patch(`https://peworlds.herokuapp.com/api/v1/recruiter/${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -110,7 +110,7 @@ export const getOrderRecruiter = (id) => {
 
     // get data user
     axios
-      .get(`http://localhost:3001/api/v1/order/recruiter/${id}`)
+      .get(`https://peworlds.herokuapp.com/api/v1/order/recruiter/${id}`)
       .then((res) => {
         // success get
         // console.log(res.data);

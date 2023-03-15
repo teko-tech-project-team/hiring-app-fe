@@ -13,7 +13,7 @@ const Login = () => {
     const data = new URLSearchParams(formdata);
 
     axios
-      .post(`http://localhost:3001/api/v1/auth/login-jobseeker`, data)
+      .post(`https://peworlds.herokuapp.com/api/v1/auth/login-jobseeker`, data)
       .then((res) => {
         localStorage.setItem("@userLogin", JSON.stringify(res.data.data));
         navigate("/edit-profile-job-seeker");

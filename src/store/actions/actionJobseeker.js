@@ -24,7 +24,7 @@ export const getAllJobseeker = () => {
 
     // get data jobseeker
     axios
-      .get(`http://localhost:3001/api/v1/jobseeker`)
+      .get(`https://peworlds.herokuapp.com/api/v1/jobseeker`)
       .then((res) => {
         // success get
         // console.log(res.data);
@@ -65,7 +65,7 @@ export const getJobseeker = (id) => {
 
     // get data jobseeker
     axios
-      .get(`http://localhost:3001/api/v1/jobseeker/${id}`)
+      .get(`https://peworlds.herokuapp.com/api/v1/jobseeker/${id}`)
       .then((res) => {
         // success get
         // console.log(res.data);
@@ -106,7 +106,7 @@ export const editProfile = (id, data) => {
 
     // get data user
     axios
-      .patch(`http://localhost:3001/api/v1/jobseeker/${id}`, data, {
+      .patch(`https://peworlds.herokuapp.com/api/v1/jobseeker/${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -151,7 +151,7 @@ export const addExperience = (data) => {
 
     // get data user
     axios
-      .post(`http://localhost:3001/api/v1/jobseeker/experience`, data)
+      .post(`https://peworlds.herokuapp.com/api/v1/jobseeker/experience`, data)
       .then((res) => {
         // success get
         // console.log(res.data);
@@ -192,7 +192,9 @@ export const getAllExperience = (id) => {
 
     // get data user
     axios
-      .get(`http://localhost:3001/api/v1/jobseeker/experience/all/${id}`)
+      .get(
+        `https://peworlds.herokuapp.com/api/v1/jobseeker/experience/all/${id}`
+      )
       .then((res) => {
         // success get
         console.log(res.data);
@@ -233,7 +235,7 @@ export const addPortfolio = (data) => {
 
     // get data user
     axios
-      .post(`http://localhost:3001/api/v1/jobseeker/portfolio`, data)
+      .post(`https://peworlds.herokuapp.com/api/v1/jobseeker/portfolio`, data)
       .then((res) => {
         // success get
         // console.log(res.data);
@@ -274,7 +276,9 @@ export const getAllPortfolio = (id) => {
 
     // get data user
     axios
-      .get(`http://localhost:3001/api/v1/jobseeker/portfolio/all/${id}`)
+      .get(
+        `https://peworlds.herokuapp.com/api/v1/jobseeker/portfolio/all/${id}`
+      )
       .then((res) => {
         // success get
         // console.log(res.data);
@@ -315,7 +319,7 @@ export const editStatus = (id, status) => {
 
     // get data user
     axios
-      .patch(`http://localhost:3001/api/v1/order/${id}`, status)
+      .patch(`https://peworlds.herokuapp.com/api/v1/order/${id}`, status)
       .then((res) => {
         // success get
         // console.log(res.data);
@@ -356,7 +360,7 @@ export const getOrder = (id) => {
 
     // get data user
     axios
-      .get(`http://localhost:3001/api/v1/order/jobseeker/${id}`)
+      .get(`https://peworlds.herokuapp.com/api/v1/order/jobseeker/${id}`)
       .then((res) => {
         // success get
         // console.log(res.data);

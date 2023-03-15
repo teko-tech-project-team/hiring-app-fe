@@ -31,7 +31,7 @@ const RegisterRecruiter = () => {
       return alert("phone is required");
     } else {
       axios({
-        url: "http://localhost:3001/api/v1/auth/recruiter/register",
+        url: "https://peworlds.herokuapp.com/api/v1/auth/recruiter/register",
         method: "POST",
         data: registerForm,
       })
